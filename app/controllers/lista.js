@@ -78,7 +78,7 @@ function createCheckbox (specs) {
     function togglecheck () {
         if(!viw.checked) {
             viw.checked = true;
-            viw.backgroundColor = specs.checkedColor || "green";
+            viw.backgroundColor = specs.checkedColor || "#0071bc";
         }
         else {
             viw.checked = false;
