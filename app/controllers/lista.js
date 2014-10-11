@@ -64,6 +64,8 @@ for (var i=0, ilen=people.length; i<ilen; i++){
 	}
 };
 
+
+
 function createCheckbox (specs) {
     if(typeof specs != "object")
         specs = {};

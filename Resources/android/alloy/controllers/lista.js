@@ -82,6 +82,11 @@ function Controller() {
     var singleValue = [ "id", "fullName" ];
     var multiValue = [ "email", "phone" ];
     var people = Ti.Contacts.getAllPeople();
+    var TiLoad = require("TiLoad");
+    TiLoad.init({
+        rotate: false
+    });
+    TiLoad.show();
     for (var i = 0, ilen = people.length; ilen > i; i++) {
         var person = people[i];
         if ("{}" != JSON.stringify(person[multiValue[1]]) && "{}" != JSON.stringify(person[multiValue[0]])) {
