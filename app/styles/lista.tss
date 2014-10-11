@@ -1,0 +1,47 @@
+"#ventana":{
+	backgroundColor: "#f3fafc"	
+},
+
+"#guardar": {
+	top: "5%",
+	right: "3%",
+	width: "13%",
+	height: "9%"
+},
+
+"#contactList":{
+	top: "18%",
+	height: "88%"
+},
+
+"#row":{
+	borderColor: "#afafaf",
+	borderRadius: "5",
+	height: "40",
+	backgroundColor:'#e7e9e7',
+},
+
+"#nombre":{
+	borderColor: "#afafaf",
+	color: "#000",
+	borderRadius: "5",
+	borderWidth: "2",
+	width: "78%",
+	top: "5%",
+	left: "5%"
+},
+
+"#contacto":{
+	left:'5%',
+	color: '#000'
+},
+
+"#check":{
+	width: "35",
+	height: "35",
+	right: "3%",
+	borderColor: "#afafaf",
+	borderRadius: "5",
+	backgroundColor: "#fff",
+	color: "#fff"
+}

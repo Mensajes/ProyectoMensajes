@@ -1,0 +1,18 @@
+<Alloy>
+	<Tab title="Mensajes">
+		<Window id="index" windowSoftInputMode="Ti.UI.Android.SOFT_INPUT_ADJUST_PAN">
+			<TextField id="buscar" value="Buscar"></TextField>
+			<Button id="lupa" backgroundImage="/blue-search-icon.png"></Button>
+				
+			<Button id="agregar" onClick="addAccordionItem">Agregar</Button>
+			<TableView id="tabla">
+				<TableViewRow>
+            		<View id="row">
+            			<Label id="newLista">Nuevo Mensaje</Label>
+            			<Button id="rowButton">Crear</Button>
+            		</View>
+	            </TableViewRow>
+			</TableView>
+		</Window>	
+	</Tab>
+</Alloy>

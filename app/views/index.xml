@@ -1,0 +1,7 @@
+<Alloy>
+	<TabGroup backgroundColor="white">
+        <Require src="principal"></Require>
+        <Require src="configMensajes"></Require>
+        <Require src="configContactos"></Require>
+    </TabGroup>
+</Alloy>

@@ -1,0 +1,69 @@
+"#index": {
+	backgroundColor:"#f3fafc"
+},
+
+"TextField": {
+	borderColor: "#afafaf"
+},
+
+"#agregar": {
+	top: "18%",
+	borderRadius: "5",
+	backgroundColor: "#0071bc",
+	width: "30%"	
+},
+
+"TableView":{
+	top: "35%",
+	height: "80%"
+},
+
+"Label":{
+	color: "#000",
+	left: "3%"
+},
+
+"#buscar":{
+	borderColor: "#afafaf",
+	color: "#000",
+	borderRadius: "5",
+	borderWidth: "2",
+	width: "78%",
+	top: "5%",
+	left: "5%"
+},
+
+"#lupa":{
+	top: "5%",
+	right: "3%",
+	width: "12%",
+	height: "10%"
+},
+
+"#contactoIcon":{
+	top: "18%",
+	left: "5%",
+	width: "12%",
+	height: "10%"
+},
+
+"#row":{
+	borderColor: "#afafaf",
+	borderRadius: "5",
+	height: "40",
+	backgroundColor:'#e7e9e7',
+},
+
+"#newLista":{
+	left:'5%',
+	color: '#000'
+},
+
+"#rowButton":{
+	right: '3%',
+	borderRadius: 5,
+	backgroundColor: "#0089e3",
+	height: "30",
+	top: "5",
+	width: "30%"		
+}

@@ -1,0 +1,20 @@
+<Alloy>
+	<Tab title="Contactos">
+        <Window id="index" windowSoftInputMode="Ti.UI.Android.SOFT_INPUT_ADJUST_PAN">
+           	<TextField id="buscar" value="Buscar"></TextField>
+	       	<Button id="lupa" backgroundImage="/blue-search-icon.png"></Button>
+        	
+        	<Button id="agregar">Contactos</Button>
+        	<Button id="contactoIcon" backgroundImage="/blue-address-book-icon.png" onClick="openwin"></Button>
+        	
+            <TableView id="tabla">
+            	<TableViewRow>
+            		<View id="row">
+            			<Label id="newLista">Nueva Lista</Label>
+            			<Button id="rowButton" onClick="openwin">Crear</Button>
+            		</View>
+	            </TableViewRow>
+        	</TableView>
+        </Window>
+    </Tab>
+</Alloy>

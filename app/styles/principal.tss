@@ -1,0 +1,94 @@
+"#win": {
+	backgroundColor:"#f3fafc"
+},
+
+"Label": {
+	color: "#000"
+}, 
+
+"TextField":{
+	borderColor: "#afafaf",
+	color: "#000",
+	borderRadius: "5",
+	borderWidth: "2"
+},
+
+"#fecha": {
+	top: "5%",
+	left: "5%",
+	width: "65%"
+},
+
+
+"#calendarIcon": {
+	top: "5%",
+	right: "10%",
+	height: "10%",
+	width: "12%"
+},
+
+"#hora": {
+	top: "18%",
+	left: "5%",
+	width: "65%",	
+},
+
+"#clockIcon":{
+	top: "18%",
+	right: "10%",
+	height: "10%",
+	width: "12%"
+}
+
+"#mensaje":{
+	left: "5%",
+	top: "31%",
+	width: "65%",
+	borderColor: "#afafaf",
+	borderRadius: "5",
+	borderWidth: "2",
+	
+},
+
+"#mensajeIcon":{
+	top: "31%",
+	right: "10%",
+	height: "10%",
+	width: "12%"
+},
+
+"#destino":{
+	left: "5%",
+	width: "65%",
+	borderColor: "#afafaf",
+	borderRadius: "5",
+	borderWidth: "2",
+	top:"44%"
+},
+
+"#destinoIcon":{
+	right: "10%",
+	height: "10%",
+	width: "12%",
+	top:"44%"
+},
+
+"#lugar":{
+	top: "57%",
+	left: "5%",
+	width: "65%",
+},
+
+"#lugarIcon":{
+	top: "57%",
+	right: "10%",
+	height: "10%",
+	width: "12%",
+},
+"#enviar": {
+	bottom: "5%",
+	borderRadius: 5,
+	backgroundColor: "#0071bc",
+	width: "30%"
+}
+

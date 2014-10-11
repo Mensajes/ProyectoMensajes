@@ -1,0 +1,31 @@
+<Alloy>
+	<Tab title="Principal">
+		<Window	id="win">
+			<TextField id="fecha" editable="false"></TextField>
+			<Button id="calendarIcon" backgroundImage="/blue-calendar-icon.png"></Button>
+			
+			<TextField id="hora" editable="false"></TextField>
+			<Button id="clockIcon" backgroundImage="/blue-clock-icon.png"></Button>			
+			
+			
+			<Picker id="mensaje" type="Titanium.UI.PICKER_TYPE_PLAIN">
+				<PickerRow title="Mensaje Uno"></PickerRow>
+				<PickerRow title="Mensaje Dos"></PickerRow>
+				<PickerRow title="Mensaje Tres"></PickerRow>
+			</Picker>
+			<Button id="mensajeIcon" backgroundImage="/blue-balloon-plus-icon.png"></Button>
+			
+			<Picker id="destino" type="Titanium.UI.PICKER_TYPE_PLAIN">
+				<PickerRow title="Lista Uno"></PickerRow>
+				<PickerRow title="Lista Dos"></PickerRow>
+				<PickerRow title="Lista Tres"></PickerRow>
+			</Picker>
+			<Button id="destinoIcon" backgroundImage="/blue-user-icon.png"></Button>
+			
+			<TextField id="lugar" editable="true"></TextField>
+			<Button id="lugarIcon" backgroundImage="/blue-home-icon.png"></Button>
+			
+			<Button id="enviar">Enviar</Button>
+		</Window>
+	</Tab>
+</Alloy>
