@@ -82,11 +82,22 @@ function Controller() {
     var singleValue = [ "id", "fullName" ];
     var multiValue = [ "email", "phone" ];
     var people = Ti.Contacts.getAllPeople();
-    var TiLoad = require("TiLoad");
-    TiLoad.init({
-        rotate: false
+    var activityIndicator = Ti.UI.createActivityIndicator({
+        color: "#0071bc",
+        font: {
+            fontFamily: "Helvetica Neue",
+            fontSize: 20,
+            fontWeight: "bold"
+        },
+        message: "Loading...",
+        style: Ti.UI.ActivityIndicatorStyle.BIG_DARK,
+        height: Ti.UI.SIZE,
+        width: Ti.UI.SIZE
     });
-    TiLoad.show();
+    var indicatorRow = Ti.UI.createTableViewRow();
+    indicatorRow.add(activityIndicator);
+    $.contactList.appendRow(indicatorRow);
+    activityIndicator.show();
     for (var i = 0, ilen = people.length; ilen > i; i++) {
         var person = people[i];
         if ("{}" != JSON.stringify(person[multiValue[1]]) && "{}" != JSON.stringify(person[multiValue[0]])) {
