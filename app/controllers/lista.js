@@ -90,6 +90,8 @@ function createCheckbox (specs) {
     viw.addEventListener("click",togglecheck);
 
     return viw;
+    
+    //cambiocambiocambiocambiocambiocambiocambio
 }
 
 $.ventana.open();
