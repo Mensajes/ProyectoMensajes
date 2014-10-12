@@ -35,6 +35,7 @@ function Controller() {
         top: "5%",
         left: "5%",
         width: "65%",
+        height: "10%",
         id: "fecha",
         editable: "false"
     });
@@ -56,6 +57,7 @@ function Controller() {
         top: "18%",
         left: "5%",
         width: "65%",
+        height: "10%",
         id: "hora",
         editable: "false"
     });
@@ -76,6 +78,7 @@ function Controller() {
         borderColor: "#afafaf",
         borderRadius: "5",
         borderWidth: "2",
+        height: "10%",
         id: "mensaje",
         type: Titanium.UI.PICKER_TYPE_PLAIN
     });
@@ -113,6 +116,7 @@ function Controller() {
         borderRadius: "5",
         borderWidth: "2",
         top: "44%",
+        height: "10%",
         id: "destino",
         type: Titanium.UI.PICKER_TYPE_PLAIN
     });
@@ -151,6 +155,7 @@ function Controller() {
         top: "57%",
         left: "5%",
         width: "65%",
+        height: "10%",
         id: "lugar",
         editable: "true"
     });
@@ -169,6 +174,7 @@ function Controller() {
         borderRadius: 5,
         backgroundColor: "#0071bc",
         width: "30%",
+        height: "12%",
         title: "Enviar",
         id: "enviar"
     });

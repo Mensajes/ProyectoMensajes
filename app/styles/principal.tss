@@ -16,7 +16,9 @@
 "#fecha": {
 	top: "5%",
 	left: "5%",
-	width: "65%"
+	width: "65%",
+	height: "10%"
+	
 },
 
 
@@ -30,7 +32,8 @@
 "#hora": {
 	top: "18%",
 	left: "5%",
-	width: "65%",	
+	width: "65%",
+	height: "10%"	
 },
 
 "#clockIcon":{
@@ -47,6 +50,7 @@
 	borderColor: "#afafaf",
 	borderRadius: "5",
 	borderWidth: "2",
+	height: "10%"
 	
 },
 
@@ -63,7 +67,8 @@
 	borderColor: "#afafaf",
 	borderRadius: "5",
 	borderWidth: "2",
-	top:"44%"
+	top:"44%",
+	height: "10%"
 },
 
 "#destinoIcon":{
@@ -77,6 +82,7 @@
 	top: "57%",
 	left: "5%",
 	width: "65%",
+	height: "10%"
 },
 
 "#lugarIcon":{
@@ -85,10 +91,12 @@
 	height: "10%",
 	width: "12%",
 },
+
 "#enviar": {
 	bottom: "5%",
 	borderRadius: 5,
 	backgroundColor: "#0071bc",
-	width: "30%"
+	width: "30%",
+	height: "12%"
 }
 
