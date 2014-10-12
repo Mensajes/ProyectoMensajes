@@ -121,6 +121,7 @@ function Controller() {
             $.contactList.appendRow(newContact);
         }
     }
+    activityIndicator.hide();
     $.ventana.open();
     _.extend($, exports);
 }
