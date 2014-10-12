@@ -85,12 +85,15 @@ function createCheckbox (specs) {
     if(typeof specs != "object")
         specs = {};
     specs.width = specs.width || 45;
+    
     specs.backgroundColor = specs.unCheckedColor || "white";
     specs.height = specs.height || 45;
     specs.border = specs.border || 5;
     specs.right =  specs.right || "3%";
     specs.borderColor = specs.borderColor || "silver";
     var viw = Ti.UI.createView(specs);
+    viw.borderRadius = 5;
+    
 
     function togglecheck () {
         if(!viw.checked) {
@@ -105,8 +108,6 @@ function createCheckbox (specs) {
     viw.addEventListener("click",togglecheck);
 
     return viw;
-    
-    //cambiocambiocambiocambiocambiocambiocambio
 }
 
 $.ventana.open();

@@ -23,10 +23,10 @@
 	"mergeCustomAndroidManifest": false,
 	"encryptJS": true,
 	"minSDK": 10,
-	"targetSDK": "19",
+	"targetSDK": "15",
 	"propertiesHash": "320857e9943785652fbd60df5a0c4a1a",
 	"activitiesHash": "d41d8cd98f00b204e9800998ecf8427e",
 	"servicesHash": "d41d8cd98f00b204e9800998ecf8427e",
 	"jssFilesHash": "d41d8cd98f00b204e9800998ecf8427e",
-	"jarLibHash": "cf69c6ceb7ab37f74757d2f98867b4d9"
+	"jarLibHash": "cb091b3f793b21886218ba2a308c1447"
 }

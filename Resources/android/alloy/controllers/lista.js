@@ -26,21 +26,16 @@ function Controller() {
         specs.right = specs.right || "3%";
         specs.borderColor = specs.borderColor || "silver";
         var viw = Ti.UI.createView(specs);
+        viw.borderRadius = 5;
         viw.addEventListener("click", togglecheck);
         return viw;
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "lista";
     if (arguments[0]) {
-        {
-            __processArg(arguments[0], "__parentSymbol");
-        }
-        {
-            __processArg(arguments[0], "$model");
-        }
-        {
-            __processArg(arguments[0], "__itemTemplate");
-        }
+        __processArg(arguments[0], "__parentSymbol");
+        __processArg(arguments[0], "$model");
+        __processArg(arguments[0], "__itemTemplate");
     }
     var $ = this;
     var exports = {};
@@ -121,6 +116,7 @@ function Controller() {
             $.contactList.appendRow(newContact);
         }
     }
+    activityIndicator.hide();
     $.ventana.open();
     _.extend($, exports);
 }
