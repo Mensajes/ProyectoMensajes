@@ -28,16 +28,21 @@ function addAccordionItem(e){
 		color: '#000'
 	});
 	
-	var dataLabel = Titanium.UI.createLabel({
+	var dataLabel = Titanium.UI.createTextArea({
 		height:'0', 
 	    objVisible:'false', 
 	    text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
 	    backgroundColor:'#e7e9e7',
-	    color: "#000"
+	    color: "#000",
+	    
+	    font: {fontSize:15, fontWeight:'bold'},
+	    returnKeyType: Ti.UI.RETURNKEY_GO,
+	    textAlign: 'left',
+	    value: 'edgar'
 	});
 	
 	var boton = Titanium.UI.createButton({
-		title: 'Guardar',
+		title: 'Editar',
 		right: '3%',
 		borderRadius: 5,
 		//backgroundColor: "#089ad4",
@@ -52,7 +57,8 @@ function addAccordionItem(e){
     	{
         	dataLabel.height = 0;
         	tvrTexto.height = 0;
-        	dataLabel.objVisible = false;	
+        	dataLabel.objVisible = false;
+        	boton.title = "Editar";	
     	}
     	else
     	{
@@ -60,6 +66,9 @@ function addAccordionItem(e){
         	tvrTexto.height = 80;
         	viewTexto.height = 140;
         	dataLabel.objVisible = true;
+        	boton.title = "Guardar";
+        	
+        	//aca va el llamado al modelo y se guarda el mensaje modificado
     	}
 	});
 	
