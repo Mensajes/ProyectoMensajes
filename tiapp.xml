@@ -39,11 +39,16 @@
         </plist>
     </ios>
     <android xmlns:android="http://schemas.android.com/apk/res/android"/>
-    <!--<android xmlns:android="http://schemas.android.com/apk/res/android">
+    <android xmlns:android="http://schemas.android.com/apk/res/android">
 	    <manifest>
-	        <application android:theme="@style/Theme.AppCompat.Translucent"/>
+	        <application>
+                <activity android:name="org.appcelerator.titanium.TiActivity" 
+                    android:screenOrientation="portrait" 
+                    android:configChanges="keyboardHidden|orientation">
+                </activity>
+            </application>
 	    </manifest>
-	</android>-->
+	</android>
     <mobileweb>
         <precache/>
         <splash>
