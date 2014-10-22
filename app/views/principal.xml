@@ -1,11 +1,11 @@
 <Alloy>
-	<Tab title="Principal">
-		<Window	id="win">
-			<TextField id="fecha" editable="false"></TextField>
-			<Button id="calendarIcon" backgroundImage="/blue-calendar-icon.png"></Button>
+	<Tab title="Principal" windowSoftInputMode="Ti.UI.Android.SOFT_INPUT_ADJUST_PAN">
+		<Window	id="win" >
+			<TextField id="fecha" editable="false" onClick="mostrarCalendario"></TextField>
+			<Button id="calendarIcon" backgroundImage="/blue-calendar-icon.png" onClick="mostrarCalendario"></Button>
 			
-			<TextField id="hora" editable="false"></TextField>
-			<Button id="clockIcon" backgroundImage="/blue-clock-icon.png"></Button>			
+			<TextField id="hora" editable="false" onClick="mostrarReloj" onFocus="mostrarReloj"></TextField>
+			<Button id="clockIcon" backgroundImage="/blue-clock-icon.png" onClick="mostrarReloj" onFocus="mostrarReloj"></Button>			
 			
 			
 			<Picker id="mensaje" type="Titanium.UI.PICKER_TYPE_PLAIN">
@@ -22,7 +22,7 @@
 			</Picker>
 			<Button id="destinoIcon" backgroundImage="/blue-user-icon.png"></Button>
 			
-			<TextField id="lugar" editable="true"></TextField>
+			<TextField id="lugar" editable="true" autocapitalization= "Titanium.UITEXT_AUTOCAPITALIZATION_SENTENCES"></TextField>
 			<Button id="lugarIcon" backgroundImage="/blue-home-icon.png"></Button>
 			
 			<Button id="enviar">Enviar</Button>

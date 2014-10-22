@@ -90,8 +90,8 @@ function Controller() {
             height: "40",
             backgroundColor: "#e7e9e7"
         });
-        var label = Titanium.UI.createLabel({
-            text: "Agregar Nuevo Mensaje",
+        var label = Titanium.UI.createTextField({
+            value: "Nuevo Titulo",
             left: "5%",
             color: "#000"
         });
@@ -102,8 +102,7 @@ function Controller() {
             color: "#000",
             width: "100%",
             font: {
-                fontSize: 15,
-                fontWeight: "bold"
+                fontSize: 15
             },
             returnKeyType: Ti.UI.RETURNKEY_GO,
             textAlign: "left"
@@ -123,18 +122,22 @@ function Controller() {
                 tvrTexto.height = 0;
                 dataLabel.objVisible = false;
                 boton.title = "Crear";
+                if ("" != dataLabel.value) {
+                    var mensaje = Alloy.createModel("mensaje", {
+                        titulo: label.value,
+                        mensaje: dataLabel.value
+                    });
+                    mensaje.save();
+                    addAccordionItem(label.value, dataLabel.value);
+                    label.value = "Nuevo Titulo";
+                    dataLabel.value = "";
+                }
             } else {
                 dataLabel.height = Ti.UI.SIZE;
                 tvrTexto.height = 80;
                 viewTexto.height = 140;
                 dataLabel.objVisible = true;
                 boton.title = "Guardar";
-                var mensaje = Alloy.createModel("mensaje", {
-                    titulo: label.text,
-                    mensaje: dataLabel.value
-                });
-                mensaje.save();
-                addAccordionItem(label.text, dataLabel.value);
             }
         });
         view.add(label);

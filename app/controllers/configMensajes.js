@@ -59,6 +59,7 @@ function addAccordionItem(titulo, text){
         	tvrTexto.height = 0;
         	dataLabel.objVisible = false;
         	boton.title = "Editar";	
+        	
     	}
     	else
     	{
@@ -108,8 +109,8 @@ function addStaticAccordionItem(e){
 		
 	});
 	
-	var label = Titanium.UI.createLabel({
-		text:'Agregar Nuevo Mensaje',
+	var label = Titanium.UI.createTextField({
+		value:'Nuevo Titulo',
 		left:'5%',
 		color: '#000'
 	});
@@ -122,7 +123,7 @@ function addStaticAccordionItem(e){
 	    color: "#000",
 	    width: '100%',
 	    //value: 'edgar',
-	    font: {fontSize:15, fontWeight:'bold'},
+	    font: {fontSize:15},
 	    returnKeyType: Ti.UI.RETURNKEY_GO,
 	    textAlign: 'left'
 	    
@@ -146,6 +147,16 @@ function addStaticAccordionItem(e){
         	tvrTexto.height = 0;
         	dataLabel.objVisible = false;
         	boton.title = "Crear";	
+        	
+        	if (dataLabel.value != ""){
+        		//alert(dataLabel.value);
+	        	var mensaje = Alloy.createModel('mensaje',{titulo: label.value, mensaje: dataLabel.value});
+	        	mensaje.save();        		        	
+	        	addAccordionItem(label.value, dataLabel.value);
+	        	
+	        	label.value = 'Nuevo Titulo';
+	        	dataLabel.value = '';
+        	}	
     	}
     	else
     	{
@@ -154,12 +165,6 @@ function addStaticAccordionItem(e){
         	viewTexto.height = 140;
         	dataLabel.objVisible = true;
         	boton.title = "Guardar";
-        	
-        	//aca va el llamado al modelo y se guarda el mensaje modificado
-        	var mensaje = Alloy.createModel('mensaje',{titulo: label.text, mensaje: dataLabel.value});
-        	mensaje.save();        	
-        	
-        	addAccordionItem(label.text, dataLabel.value);	
     	}
 	});
 	

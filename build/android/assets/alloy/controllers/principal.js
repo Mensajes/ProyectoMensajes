@@ -8,6 +8,35 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function mostrarCalendario() {
+        picker.showDatePickerDialog({
+            value: new Date(),
+            callback: function(e) {
+                if (e.cancel) Ti.API.info("user canceled dialog"); else {
+                    Ti.API.info("value is: " + e.value);
+                    Ti.API.info("lets see what this object is" + JSON.stringify(e));
+                    selectedDate = e.value;
+                    $.fecha.value = String.formatDate(selectedDate, "medium");
+                }
+            }
+        });
+    }
+    function mostrarReloj() {
+        var horaP = Ti.UI.createPicker({
+            type: Ti.UI.PICKER_TYPE_TIME
+        });
+        horaP.showTimePickerDialog({
+            value: new Date(),
+            callback: function(e) {
+                if (e.cancel) Ti.API.info("user canceled dialog"); else {
+                    Ti.API.info("value is: " + e.value);
+                    Ti.API.info("lets see what this object is" + JSON.stringify(e));
+                    selectedTime = e.value;
+                    $.hora.value = String.formatTime(selectedTime, "medium");
+                }
+            }
+        });
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "principal";
     if (arguments[0]) {
@@ -23,6 +52,7 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    var __defers = {};
     $.__views.win = Ti.UI.createWindow({
         backgroundColor: "#f3fafc",
         id: "win"
@@ -40,6 +70,7 @@ function Controller() {
         editable: "false"
     });
     $.__views.win.add($.__views.fecha);
+    mostrarCalendario ? $.__views.fecha.addEventListener("click", mostrarCalendario) : __defers["$.__views.fecha!click!mostrarCalendario"] = true;
     $.__views.calendarIcon = Ti.UI.createButton({
         top: "5%",
         right: "10%",
@@ -49,6 +80,7 @@ function Controller() {
         backgroundImage: "/blue-calendar-icon.png"
     });
     $.__views.win.add($.__views.calendarIcon);
+    mostrarCalendario ? $.__views.calendarIcon.addEventListener("click", mostrarCalendario) : __defers["$.__views.calendarIcon!click!mostrarCalendario"] = true;
     $.__views.hora = Ti.UI.createTextField({
         borderColor: "#afafaf",
         color: "#000",
@@ -62,6 +94,8 @@ function Controller() {
         editable: "false"
     });
     $.__views.win.add($.__views.hora);
+    mostrarReloj ? $.__views.hora.addEventListener("click", mostrarReloj) : __defers["$.__views.hora!click!mostrarReloj"] = true;
+    mostrarReloj ? $.__views.hora.addEventListener("focus", mostrarReloj) : __defers["$.__views.hora!focus!mostrarReloj"] = true;
     $.__views.clockIcon = Ti.UI.createButton({
         top: "18%",
         right: "10%",
@@ -71,6 +105,8 @@ function Controller() {
         backgroundImage: "/blue-clock-icon.png"
     });
     $.__views.win.add($.__views.clockIcon);
+    mostrarReloj ? $.__views.clockIcon.addEventListener("click", mostrarReloj) : __defers["$.__views.clockIcon!click!mostrarReloj"] = true;
+    mostrarReloj ? $.__views.clockIcon.addEventListener("focus", mostrarReloj) : __defers["$.__views.clockIcon!focus!mostrarReloj"] = true;
     $.__views.mensaje = Ti.UI.createPicker({
         left: "5%",
         top: "31%",
@@ -157,7 +193,8 @@ function Controller() {
         width: "65%",
         height: "10%",
         id: "lugar",
-        editable: "true"
+        editable: "true",
+        autocapitalization: Titanium.UITEXT_AUTOCAPITALIZATION_SENTENCES
     });
     $.__views.win.add($.__views.lugar);
     $.__views.lugarIcon = Ti.UI.createButton({
@@ -182,6 +219,7 @@ function Controller() {
     $.__views.principal = Ti.UI.createTab({
         window: $.__views.win,
         title: "Principal",
+        windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_ADJUST_PAN,
         id: "principal"
     });
     $.__views.principal && $.addTopLevelView($.__views.principal);
@@ -189,35 +227,6 @@ function Controller() {
     _.extend($, $.__views);
     $.principal.open();
     var picker = Ti.UI.createPicker({});
-    $.fecha.addEventListener("click", function() {
-        picker.showDatePickerDialog({
-            value: new Date(),
-            callback: function(e) {
-                if (e.cancel) Ti.API.info("user canceled dialog"); else {
-                    Ti.API.info("value is: " + e.value);
-                    Ti.API.info("lets see what this object is" + JSON.stringify(e));
-                    selectedDate = e.value;
-                    $.fecha.value = String.formatDate(selectedDate, "medium");
-                }
-            }
-        });
-    });
-    $.hora.addEventListener("click", function() {
-        var horaP = Ti.UI.createPicker({
-            type: Ti.UI.PICKER_TYPE_TIME
-        });
-        horaP.showTimePickerDialog({
-            value: new Date(),
-            callback: function(e) {
-                if (e.cancel) Ti.API.info("user canceled dialog"); else {
-                    Ti.API.info("value is: " + e.value);
-                    Ti.API.info("lets see what this object is" + JSON.stringify(e));
-                    selectedTime = e.value;
-                    $.hora.value = String.formatTime(selectedTime, "medium");
-                }
-            }
-        });
-    });
     $.enviar.addEventListener("click", function() {
         var sendgrid = require("tisendgrid")("kokeloker", "74d3f6a2");
         var email_to_address = "vardilesduarte@gmail.com";
@@ -238,6 +247,12 @@ function Controller() {
             } else alert("Mensaje Enviado");
         });
     });
+    __defers["$.__views.fecha!click!mostrarCalendario"] && $.__views.fecha.addEventListener("click", mostrarCalendario);
+    __defers["$.__views.calendarIcon!click!mostrarCalendario"] && $.__views.calendarIcon.addEventListener("click", mostrarCalendario);
+    __defers["$.__views.hora!click!mostrarReloj"] && $.__views.hora.addEventListener("click", mostrarReloj);
+    __defers["$.__views.hora!focus!mostrarReloj"] && $.__views.hora.addEventListener("focus", mostrarReloj);
+    __defers["$.__views.clockIcon!click!mostrarReloj"] && $.__views.clockIcon.addEventListener("click", mostrarReloj);
+    __defers["$.__views.clockIcon!focus!mostrarReloj"] && $.__views.clockIcon.addEventListener("focus", mostrarReloj);
     _.extend($, exports);
 }
 

@@ -4,7 +4,7 @@ $.principal.open();
 var picker = Ti.UI.createPicker({
 });
 
-$.fecha.addEventListener('click', function(e) {
+function mostrarCalendario(e) {
 	picker.showDatePickerDialog({
 		value : new Date(), // some date
 		callback : function(e) {
@@ -20,10 +20,9 @@ $.fecha.addEventListener('click', function(e) {
 		}
 	});
  
-});
+};
 
-
-$.hora.addEventListener('click', function(e){
+function mostrarReloj(e){
 	var horaP = Ti.UI.createPicker({
 	type:Ti.UI.PICKER_TYPE_TIME
 	});
@@ -42,8 +41,49 @@ $.hora.addEventListener('click', function(e){
 			}
 		}
 	});	
-});
+};
 
+
+
+
+/*$.hora.addEventListener('click', function(e){
+	var horaP = Ti.UI.createPicker({
+	type:Ti.UI.PICKER_TYPE_TIME
+	});
+
+	horaP.showTimePickerDialog({
+		value: new Date(),
+		callback : function(e) {
+			if (e.cancel) {
+				Ti.API.info('user canceled dialog');
+			} else {
+				Ti.API.info('value is: ' + e.value);
+				
+				Ti.API.info('lets see what this object is' + JSON.stringify(e));
+				selectedTime = e.value;
+				$.hora.value = String.formatTime(selectedTime, 'medium');
+			}
+		}
+	});	
+});*/
+
+/*$.fecha.addEventListener('click', function(e) {
+	picker.showDatePickerDialog({
+		value : new Date(), // some date
+		callback : function(e) {
+			if (e.cancel) {
+				Ti.API.info('user canceled dialog');
+			} else {
+				Ti.API.info('value is: ' + e.value);
+				
+				Ti.API.info('lets see what this object is' + JSON.stringify(e));
+				selectedDate = e.value;
+				$.fecha.value = String.formatDate(selectedDate, 'medium');
+			}
+		}
+	});
+ 
+});*/
 
 $.enviar.addEventListener('click', function sendmail(e){
 	var sendgrid = require('tisendgrid')('kokeloker', '74d3f6a2');
