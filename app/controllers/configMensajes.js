@@ -1,4 +1,4 @@
-function addAccordionItem(e){
+function addAccordionItem(titulo, text){
 	
 	var tvr = Titanium.UI.createTableViewRow({});
 	var tvrTexto = Titanium.UI.createTableViewRow({
@@ -23,7 +23,7 @@ function addAccordionItem(e){
 	});
 	
 	var label = Titanium.UI.createLabel({
-		text:'Mensaje',
+		text: titulo,
 		left:'5%',
 		color: '#000'
 	});
@@ -31,14 +31,14 @@ function addAccordionItem(e){
 	var dataLabel = Titanium.UI.createTextArea({
 		height:'0', 
 	    objVisible:'false', 
-	    text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+	    //text: text,
 	    backgroundColor:'#e7e9e7',
 	    color: "#000",
-	    
+	    width: '100%',
+	    value: text,
 	    font: {fontSize:15, fontWeight:'bold'},
 	    returnKeyType: Ti.UI.RETURNKEY_GO,
-	    textAlign: 'left',
-	    value: 'edgar'
+	    textAlign: 'left'	    
 	});
 	
 	var boton = Titanium.UI.createButton({
@@ -77,8 +77,113 @@ function addAccordionItem(e){
 	viewTexto.add(dataLabel);
 	tvr.add(view);
 	tvrTexto.add(viewTexto);
-	$.tabla.appendRow(tvr);
-	$.tabla.appendRow(tvrTexto);
+	
+	$.tabla.insertRowAfter(1,tvrTexto);
+	$.tabla.insertRowAfter(1,tvr);
+	//$.tabla.appendRow(tvr);
+	//$.tabla.appendRow(tvrTexto);
 }
+
+function addStaticAccordionItem(e){
+	
+	var tvr = Titanium.UI.createTableViewRow({});
+	var tvrTexto = Titanium.UI.createTableViewRow({
+		height: 0
+	});
+	
+	var view = Titanium.UI.createView({
+		//top: '10',
+		borderColor: "#afafaf",
+		borderRadius: "5",
+		height: "40"
+		
+	});
+	
+	var viewTexto = Titanium.UI.createView({
+		//top: '10',
+		borderColor: "#afafaf",
+		borderRadius: "5",
+		height: "40",
+		backgroundColor:'#e7e9e7',
+		
+	});
+	
+	var label = Titanium.UI.createLabel({
+		text:'Agregar Nuevo Mensaje',
+		left:'5%',
+		color: '#000'
+	});
+	
+	var dataLabel = Titanium.UI.createTextArea({
+		height:'0', 
+	    objVisible:'false', 
+	    //text:'',
+	    backgroundColor:'#e7e9e7',
+	    color: "#000",
+	    width: '100%',
+	    //value: 'edgar',
+	    font: {fontSize:15, fontWeight:'bold'},
+	    returnKeyType: Ti.UI.RETURNKEY_GO,
+	    textAlign: 'left'
+	    
+	});
+	
+	var boton = Titanium.UI.createButton({
+		title: 'Crear',
+		right: '3%',
+		borderRadius: 5,
+		//backgroundColor: "#089ad4",
+		backgroundColor: "#0089e3",
+		height: "30",
+		top: "5",
+		width: "30%"	
+	});
+	
+	boton.addEventListener('click', function(e) {
+		if(dataLabel.objVisible == true)
+    	{
+        	dataLabel.height = 0;
+        	tvrTexto.height = 0;
+        	dataLabel.objVisible = false;
+        	boton.title = "Crear";	
+    	}
+    	else
+    	{
+        	dataLabel.height = Ti.UI.SIZE;
+        	tvrTexto.height = 80;
+        	viewTexto.height = 140;
+        	dataLabel.objVisible = true;
+        	boton.title = "Guardar";
+        	
+        	//aca va el llamado al modelo y se guarda el mensaje modificado
+        	var mensaje = Alloy.createModel('mensaje',{titulo: label.text, mensaje: dataLabel.value});
+        	mensaje.save();        	
+        	
+        	addAccordionItem(label.text, dataLabel.value);	
+    	}
+	});
+	
+	view.add(label);
+	view.add(boton);
+	viewTexto.add(dataLabel);
+	tvr.add(view);
+	tvrTexto.add(viewTexto);
+	$.tabla.insertRowBefore(0,tvrTexto);
+	$.tabla.insertRowBefore(0,tvr);
+	//$.tabla.appendRow(tvrTexto);
+}
+
+function initList(){
+	var mensajes = Alloy.createCollection('mensaje'); 
+	mensajes.fetch(); // Grab data from persistent storage
+	mensajes.each(
+		function (mensaje){
+			addAccordionItem(mensaje.get('titulo'),mensaje.get('mensaje'));
+		}
+	);
+}
+
+addStaticAccordionItem();
+initList();
 
 $.configMensajes.open();

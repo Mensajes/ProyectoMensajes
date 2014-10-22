@@ -40,15 +40,14 @@
     </ios>
     <android xmlns:android="http://schemas.android.com/apk/res/android"/>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
-	    <manifest>
-	        <application>
-                <activity android:name="org.appcelerator.titanium.TiActivity" 
-                    android:screenOrientation="portrait" 
-                    android:configChanges="keyboardHidden|orientation">
-                </activity>
+        <manifest>
+            <application>
+                <activity
+                    android:configChanges="keyboardHidden|orientation"
+                    android:name="org.appcelerator.titanium.TiActivity" android:screenOrientation="portrait"/>
             </application>
-	    </manifest>
-	</android>
+        </manifest>
+    </android>
     <mobileweb>
         <precache/>
         <splash>
@@ -65,7 +64,7 @@
         <target device="blackberry">false</target>
         <target device="mobileweb">true</target>
     </deployment-targets>
-    <sdk-version>3.3.0.GA</sdk-version>
+    <sdk-version>3.4.0.GA</sdk-version>
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>

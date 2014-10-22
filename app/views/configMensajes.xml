@@ -6,12 +6,7 @@
 				
 			<Button id="agregar" onClick="addAccordionItem">Agregar</Button>
 			<TableView id="tabla">
-				<TableViewRow>
-            		<View id="row">
-            			<Label id="newLista">Nuevo Mensaje</Label>
-            			<Button id="rowButton">Crear</Button>
-            		</View>
-	            </TableViewRow>
+				
 			</TableView>
 		</Window>	
 	</Tab>

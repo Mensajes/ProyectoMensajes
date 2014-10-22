@@ -83,23 +83,23 @@ function Controller() {
         type: Titanium.UI.PICKER_TYPE_PLAIN
     });
     $.__views.win.add($.__views.mensaje);
-    var __alloyId11 = [];
-    $.__views.__alloyId12 = Ti.UI.createPickerRow({
+    var __alloyId9 = [];
+    $.__views.__alloyId10 = Ti.UI.createPickerRow({
         title: "Mensaje Uno",
+        id: "__alloyId10"
+    });
+    __alloyId9.push($.__views.__alloyId10);
+    $.__views.__alloyId11 = Ti.UI.createPickerRow({
+        title: "Mensaje Dos",
+        id: "__alloyId11"
+    });
+    __alloyId9.push($.__views.__alloyId11);
+    $.__views.__alloyId12 = Ti.UI.createPickerRow({
+        title: "Mensaje Tres",
         id: "__alloyId12"
     });
-    __alloyId11.push($.__views.__alloyId12);
-    $.__views.__alloyId13 = Ti.UI.createPickerRow({
-        title: "Mensaje Dos",
-        id: "__alloyId13"
-    });
-    __alloyId11.push($.__views.__alloyId13);
-    $.__views.__alloyId14 = Ti.UI.createPickerRow({
-        title: "Mensaje Tres",
-        id: "__alloyId14"
-    });
-    __alloyId11.push($.__views.__alloyId14);
-    $.__views.mensaje.add(__alloyId11);
+    __alloyId9.push($.__views.__alloyId12);
+    $.__views.mensaje.add(__alloyId9);
     $.__views.mensajeIcon = Ti.UI.createButton({
         top: "31%",
         right: "10%",
@@ -121,23 +121,23 @@ function Controller() {
         type: Titanium.UI.PICKER_TYPE_PLAIN
     });
     $.__views.win.add($.__views.destino);
-    var __alloyId15 = [];
-    $.__views.__alloyId16 = Ti.UI.createPickerRow({
+    var __alloyId13 = [];
+    $.__views.__alloyId14 = Ti.UI.createPickerRow({
         title: "Lista Uno",
+        id: "__alloyId14"
+    });
+    __alloyId13.push($.__views.__alloyId14);
+    $.__views.__alloyId15 = Ti.UI.createPickerRow({
+        title: "Lista Dos",
+        id: "__alloyId15"
+    });
+    __alloyId13.push($.__views.__alloyId15);
+    $.__views.__alloyId16 = Ti.UI.createPickerRow({
+        title: "Lista Tres",
         id: "__alloyId16"
     });
-    __alloyId15.push($.__views.__alloyId16);
-    $.__views.__alloyId17 = Ti.UI.createPickerRow({
-        title: "Lista Dos",
-        id: "__alloyId17"
-    });
-    __alloyId15.push($.__views.__alloyId17);
-    $.__views.__alloyId18 = Ti.UI.createPickerRow({
-        title: "Lista Tres",
-        id: "__alloyId18"
-    });
-    __alloyId15.push($.__views.__alloyId18);
-    $.__views.destino.add(__alloyId15);
+    __alloyId13.push($.__views.__alloyId16);
+    $.__views.destino.add(__alloyId13);
     $.__views.destinoIcon = Ti.UI.createButton({
         right: "10%",
         height: "10%",

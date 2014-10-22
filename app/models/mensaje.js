@@ -10,7 +10,7 @@ exports.definition = {
         },
         adapter : {
             type : "sql",
-            collection_name : "mensajes",
+            collection_name : "mensaje",
             idAttribute: "id"
         }
  
