@@ -112,3 +112,6 @@ $.enviar.addEventListener('click', function sendmail(e){
 	});
 });
 
+function dialogoLugar(e){
+	alert("Elegir Lugar");
+};

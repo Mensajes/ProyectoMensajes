@@ -45,12 +45,20 @@ function Controller() {
         });
         var boton = Titanium.UI.createButton({
             title: "Editar",
-            right: "3%",
+            right: "14%",
             borderRadius: 5,
             backgroundColor: "#0089e3",
             height: "30",
             top: "5",
-            width: "30%"
+            width: "20%"
+        });
+        var elimina = Titanium.UI.createButton({
+            right: "3%",
+            borderRadius: 5,
+            height: "30",
+            top: "5",
+            width: "10%",
+            backgroundImage: "/blue-cross-icon.png"
         });
         boton.addEventListener("click", function() {
             if (true == dataLabel.objVisible) {
@@ -68,6 +76,7 @@ function Controller() {
         });
         view.add(label);
         view.add(boton);
+        view.add(elimina);
         viewTexto.add(dataLabel);
         tvr.add(view);
         tvrTexto.add(viewTexto);
@@ -158,15 +167,9 @@ function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "configMensajes";
     if (arguments[0]) {
-        {
-            __processArg(arguments[0], "__parentSymbol");
-        }
-        {
-            __processArg(arguments[0], "$model");
-        }
-        {
-            __processArg(arguments[0], "__itemTemplate");
-        }
+        __processArg(arguments[0], "__parentSymbol");
+        __processArg(arguments[0], "$model");
+        __processArg(arguments[0], "__itemTemplate");
     }
     var $ = this;
     var exports = {};
@@ -193,8 +196,8 @@ function Controller() {
         right: "3%",
         width: "12%",
         height: "10%",
-        id: "lupa",
-        backgroundImage: "/blue-search-icon.png"
+        backgroundImage: "/blue-search-icon.png",
+        id: "lupa"
     });
     $.__views.index.add($.__views.lupa);
     $.__views.agregar = Ti.UI.createButton({

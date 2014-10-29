@@ -32,7 +32,8 @@
 	top: "5%",
 	right: "3%",
 	width: "12%",
-	height: "10%"
+	height: "10%",
+	backgroundImage: "/blue-search-icon.png"
 },
 
 "#row":{

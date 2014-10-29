@@ -43,13 +43,22 @@ function addAccordionItem(titulo, text){
 	
 	var boton = Titanium.UI.createButton({
 		title: 'Editar',
-		right: '3%',
+		right: '14%',
 		borderRadius: 5,
 		//backgroundColor: "#089ad4",
 		backgroundColor: "#0089e3",
 		height: "30",
 		top: "5",
-		width: "30%"	
+		width: "20%"	
+	});
+	
+	var elimina = Titanium.UI.createButton({
+		right: '3%',
+		borderRadius: 5,
+		height: "30",
+		top: "5",
+		width: "10%",
+		backgroundImage: "/blue-cross-icon.png"	
 	});
 	
 	boton.addEventListener('click', function(e) {
@@ -75,6 +84,7 @@ function addAccordionItem(titulo, text){
 	
 	view.add(label);
 	view.add(boton);
+	view.add(elimina);
 	viewTexto.add(dataLabel);
 	tvr.add(view);
 	tvrTexto.add(viewTexto);

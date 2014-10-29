@@ -21,12 +21,12 @@
 	
 },
 
-
 "#calendarIcon": {
 	top: "5%",
 	right: "10%",
 	height: "10%",
-	width: "12%"
+	width: "12%",
+	backgroundImage: "/blue-calendar-icon.png" 
 },
 
 "#hora": {
@@ -40,7 +40,8 @@
 	top: "18%",
 	right: "10%",
 	height: "10%",
-	width: "12%"
+	width: "12%",
+	backgroundImage: "/blue-clock-icon.png"
 }
 
 "#mensaje":{
@@ -58,7 +59,8 @@
 	top: "31%",
 	right: "10%",
 	height: "10%",
-	width: "12%"
+	width: "12%",
+	backgroundImage: "/blue-balloon-plus-icon.png"
 },
 
 "#destino":{
@@ -75,7 +77,8 @@
 	right: "10%",
 	height: "10%",
 	width: "12%",
-	top:"44%"
+	top:"44%",
+	backgroundImage: "/blue-user-icon.png"
 },
 
 "#lugar":{
@@ -90,6 +93,7 @@
 	right: "10%",
 	height: "10%",
 	width: "12%",
+	backgroundImage: "/blue-home-icon.png"
 },
 
 "#enviar": {

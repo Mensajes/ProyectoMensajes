@@ -37,18 +37,15 @@ function Controller() {
             }
         });
     }
+    function dialogoLugar() {
+        alert("Elegir Lugar");
+    }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "principal";
     if (arguments[0]) {
-        {
-            __processArg(arguments[0], "__parentSymbol");
-        }
-        {
-            __processArg(arguments[0], "$model");
-        }
-        {
-            __processArg(arguments[0], "__itemTemplate");
-        }
+        __processArg(arguments[0], "__parentSymbol");
+        __processArg(arguments[0], "$model");
+        __processArg(arguments[0], "__itemTemplate");
     }
     var $ = this;
     var exports = {};
@@ -76,8 +73,8 @@ function Controller() {
         right: "10%",
         height: "10%",
         width: "12%",
-        id: "calendarIcon",
-        backgroundImage: "/blue-calendar-icon.png"
+        backgroundImage: "/blue-calendar-icon.png",
+        id: "calendarIcon"
     });
     $.__views.win.add($.__views.calendarIcon);
     mostrarCalendario ? $.__views.calendarIcon.addEventListener("click", mostrarCalendario) : __defers["$.__views.calendarIcon!click!mostrarCalendario"] = true;
@@ -101,8 +98,8 @@ function Controller() {
         right: "10%",
         height: "10%",
         width: "12%",
-        id: "clockIcon",
-        backgroundImage: "/blue-clock-icon.png"
+        backgroundImage: "/blue-clock-icon.png",
+        id: "clockIcon"
     });
     $.__views.win.add($.__views.clockIcon);
     mostrarReloj ? $.__views.clockIcon.addEventListener("click", mostrarReloj) : __defers["$.__views.clockIcon!click!mostrarReloj"] = true;
@@ -141,8 +138,8 @@ function Controller() {
         right: "10%",
         height: "10%",
         width: "12%",
-        id: "mensajeIcon",
-        backgroundImage: "/blue-balloon-plus-icon.png"
+        backgroundImage: "/blue-balloon-plus-icon.png",
+        id: "mensajeIcon"
     });
     $.__views.win.add($.__views.mensajeIcon);
     $.__views.destino = Ti.UI.createPicker({
@@ -179,8 +176,8 @@ function Controller() {
         height: "10%",
         width: "12%",
         top: "44%",
-        id: "destinoIcon",
-        backgroundImage: "/blue-user-icon.png"
+        backgroundImage: "/blue-user-icon.png",
+        id: "destinoIcon"
     });
     $.__views.win.add($.__views.destinoIcon);
     $.__views.lugar = Ti.UI.createTextField({
@@ -193,17 +190,18 @@ function Controller() {
         width: "65%",
         height: "10%",
         id: "lugar",
-        editable: "true",
-        autocapitalization: Titanium.UITEXT_AUTOCAPITALIZATION_SENTENCES
+        editable: "false"
     });
     $.__views.win.add($.__views.lugar);
+    dialogoLugar ? $.__views.lugar.addEventListener("click", dialogoLugar) : __defers["$.__views.lugar!click!dialogoLugar"] = true;
+    dialogoLugar ? $.__views.lugar.addEventListener("focus", dialogoLugar) : __defers["$.__views.lugar!focus!dialogoLugar"] = true;
     $.__views.lugarIcon = Ti.UI.createButton({
         top: "57%",
         right: "10%",
         height: "10%",
         width: "12%",
-        id: "lugarIcon",
-        backgroundImage: "/blue-home-icon.png"
+        backgroundImage: "/blue-home-icon.png",
+        id: "lugarIcon"
     });
     $.__views.win.add($.__views.lugarIcon);
     $.__views.enviar = Ti.UI.createButton({
@@ -253,6 +251,8 @@ function Controller() {
     __defers["$.__views.hora!focus!mostrarReloj"] && $.__views.hora.addEventListener("focus", mostrarReloj);
     __defers["$.__views.clockIcon!click!mostrarReloj"] && $.__views.clockIcon.addEventListener("click", mostrarReloj);
     __defers["$.__views.clockIcon!focus!mostrarReloj"] && $.__views.clockIcon.addEventListener("focus", mostrarReloj);
+    __defers["$.__views.lugar!click!dialogoLugar"] && $.__views.lugar.addEventListener("click", dialogoLugar);
+    __defers["$.__views.lugar!focus!dialogoLugar"] && $.__views.lugar.addEventListener("focus", dialogoLugar);
     _.extend($, exports);
 }
 
