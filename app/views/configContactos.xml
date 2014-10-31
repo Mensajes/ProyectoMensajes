@@ -1,7 +1,7 @@
 <Alloy>
 	<Tab title="Contactos">
         <Window id="index" windowSoftInputMode="Ti.UI.Android.SOFT_INPUT_ADJUST_PAN">
-           	<TextField id="buscar" value="Buscar"></TextField>
+           	<TextField id="buscar" hintText="Buscar"></TextField>
 	       	<Button id="lupa" backgroundImage="/blue-search-icon.png"></Button>
         	
         	<Button id="agregar">Contactos</Button>

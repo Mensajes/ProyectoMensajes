@@ -1,29 +1,20 @@
 <Alloy>
 	<Tab title="Principal" windowSoftInputMode="Ti.UI.Android.SOFT_INPUT_ADJUST_PAN">
 		<Window	id="win" >
-			<TextField id="fecha" editable="false" onClick="mostrarCalendario"></TextField>
+			<TextField id="fecha" editable="false" onClick="mostrarCalendario" hintText="Fecha"></TextField>
 			<Button id="calendarIcon" onClick="mostrarCalendario"></Button>
 			
-			<TextField id="hora" editable="false" onClick="mostrarReloj" onFocus="mostrarReloj"></TextField>
+			<TextField id="hora" editable="false" onClick="mostrarReloj" onFocus="mostrarReloj" hintText="Hora"></TextField>
 			<Button id="clockIcon" onClick="mostrarReloj" onFocus="mostrarReloj"></Button>			
 			
+			<TextField id="mensaje" editable="false" onClick="selectMensaje" onFocus="selectMensaje" hintText="Mensaje"></TextField>
+			<Button id="mensajeIcon" onClick="selectMensaje"></Button>
 			
-			<Picker id="mensaje" type="Titanium.UI.PICKER_TYPE_PLAIN">
-				<PickerRow title="Mensaje Uno"></PickerRow>
-				<PickerRow title="Mensaje Dos"></PickerRow>
-				<PickerRow title="Mensaje Tres"></PickerRow>
-			</Picker>
-			<Button id="mensajeIcon"></Button>
+			<TextField id="destino" editable="false" onClick="selectLista" onFocus="selectLista" hintText="Contactos"></TextField>
+			<Button id="destinoIcon" onClick="selectLista"></Button>
 			
-			<Picker id="destino" type="Titanium.UI.PICKER_TYPE_PLAIN">
-				<PickerRow title="Lista Uno"></PickerRow>
-				<PickerRow title="Lista Dos"></PickerRow>
-				<PickerRow title="Lista Tres"></PickerRow>
-			</Picker>
-			<Button id="destinoIcon"></Button>
-			
-			<TextField id="lugar" onClick="dialogoLugar" editable="false" onFocus="dialogoLugar"></TextField>
-			<Button id="lugarIcon"></Button>
+			<TextField id="lugar" onClick="dialogoLugar" editable="false" onFocus="dialogoLugar" hintText="Ubicacion"></TextField>
+			<Button id="lugarIcon" onClick="dialogoLugar"></Button>
 			
 			<Button id="enviar">Enviar</Button>
 		</Window>

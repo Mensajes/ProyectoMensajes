@@ -52,7 +52,6 @@
 	borderRadius: "5",
 	borderWidth: "2",
 	height: "10%"
-	
 },
 
 "#mensajeIcon":{

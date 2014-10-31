@@ -36,7 +36,7 @@ function Controller() {
         top: "5%",
         left: "5%",
         id: "buscar",
-        value: "Buscar"
+        hintText: "Buscar"
     });
     $.__views.index.add($.__views.buscar);
     $.__views.lupa = Ti.UI.createButton({

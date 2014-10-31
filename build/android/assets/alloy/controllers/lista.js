@@ -54,7 +54,7 @@ function Controller() {
         top: "5%",
         left: "5%",
         id: "nombre",
-        value: "Nombre Lista"
+        hintText: "Nombre Lista"
     });
     $.__views.ventana.add($.__views.nombre);
     $.__views.guardar = Ti.UI.createButton({
