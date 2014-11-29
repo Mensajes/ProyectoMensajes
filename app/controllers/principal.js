@@ -115,7 +115,7 @@ function dialogoLugar(e){
 			lock = 1;
 			xhr = Titanium.Network.createHTTPClient();
 			var query = texto.value; // or whatever you want to forward geocode
-			xhr.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?address=' + query);
+			xhr.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?address=' + query+'&components=country:CL');
 			xhr.onload = function() {
 				lock = 0;
 			    var json = JSON.parse(this.responseText);

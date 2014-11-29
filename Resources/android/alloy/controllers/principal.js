@@ -64,7 +64,7 @@ function Controller() {
                 lock = 1;
                 xhr = Titanium.Network.createHTTPClient();
                 var query = texto.value;
-                xhr.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?address=" + query);
+                xhr.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?address=" + query + "&components=country:CL");
                 xhr.onload = function() {
                     lock = 0;
                     var json = JSON.parse(this.responseText);
