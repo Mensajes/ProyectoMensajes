@@ -3,9 +3,6 @@
 		<Window id="index" windowSoftInputMode="Ti.UI.Android.SOFT_INPUT_ADJUST_PAN">
 			<TextField id="buscar" hintText="Buscar"></TextField>
 			<Button id="lupa"></Button>
-			
-			<Button id="agregar" onClick="addAccordionItem">Agregar</Button>
-			
 			<TableView id="tabla">
 			</TableView>
 		</Window>	

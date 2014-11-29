@@ -8,7 +8,7 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function addAccordionItem(titulo, text) {
+    function addAccordionItem(id, titulo, text) {
         var tvr = Titanium.UI.createTableViewRow({});
         var tvrTexto = Titanium.UI.createTableViewRow({
             height: 0
@@ -60,12 +60,30 @@ function Controller() {
             width: "10%",
             backgroundImage: "/blue-cross-icon.png"
         });
+        elimina.addEventListener("click", function() {
+            var mensajes = Alloy.createCollection("mensaje");
+            mensajes.fetch();
+            var mensaje = mensajes.get(id);
+            var options = {
+                success: function() {
+                    $.tabla.deleteRow(tvr, {});
+                    $.tabla.deleteRow(tvrTexto, {});
+                },
+                error: function() {}
+            };
+            mensaje.destroy(options);
+        });
         boton.addEventListener("click", function() {
             if (true == dataLabel.objVisible) {
                 dataLabel.height = 0;
                 tvrTexto.height = 0;
                 dataLabel.objVisible = false;
                 boton.title = "Editar";
+                var mensajes = Alloy.createCollection("mensaje");
+                mensajes.fetch();
+                var mensaje = mensajes.get(id);
+                mensaje.set("mensaje", dataLabel.value);
+                mensaje.save();
             } else {
                 dataLabel.height = Ti.UI.SIZE;
                 tvrTexto.height = 80;
@@ -137,7 +155,7 @@ function Controller() {
                         mensaje: dataLabel.value
                     });
                     mensaje.save();
-                    addAccordionItem(label.value, dataLabel.value);
+                    addAccordionItem(mensaje.get("id"), label.value, dataLabel.value);
                     label.value = "Nuevo Titulo";
                     dataLabel.value = "";
                 }
@@ -161,19 +179,24 @@ function Controller() {
         var mensajes = Alloy.createCollection("mensaje");
         mensajes.fetch();
         mensajes.each(function(mensaje) {
-            addAccordionItem(mensaje.get("titulo"), mensaje.get("mensaje"));
+            addAccordionItem(mensaje.get("id"), mensaje.get("titulo"), mensaje.get("mensaje"));
         });
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "configMensajes";
     if (arguments[0]) {
-        __processArg(arguments[0], "__parentSymbol");
-        __processArg(arguments[0], "$model");
-        __processArg(arguments[0], "__itemTemplate");
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
     }
     var $ = this;
     var exports = {};
-    var __defers = {};
     $.__views.index = Ti.UI.createWindow({
         backgroundColor: "#f3fafc",
         id: "index",
@@ -200,16 +223,6 @@ function Controller() {
         id: "lupa"
     });
     $.__views.index.add($.__views.lupa);
-    $.__views.agregar = Ti.UI.createButton({
-        top: "18%",
-        borderRadius: "5",
-        backgroundColor: "#0071bc",
-        width: "30%",
-        title: "Agregar",
-        id: "agregar"
-    });
-    $.__views.index.add($.__views.agregar);
-    addAccordionItem ? $.__views.agregar.addEventListener("click", addAccordionItem) : __defers["$.__views.agregar!click!addAccordionItem"] = true;
     $.__views.tabla = Ti.UI.createTableView({
         top: "35%",
         height: "80%",
@@ -227,7 +240,6 @@ function Controller() {
     addStaticAccordionItem();
     initList();
     $.configMensajes.open();
-    __defers["$.__views.agregar!click!addAccordionItem"] && $.__views.agregar.addEventListener("click", addAccordionItem);
     _.extend($, exports);
 }
 

@@ -1,4 +1,4 @@
-function addAccordionItem(titulo, text){
+function addAccordionItem(id,titulo, text){
 	
 	var tvr = Titanium.UI.createTableViewRow({});
 	var tvrTexto = Titanium.UI.createTableViewRow({
@@ -58,7 +58,25 @@ function addAccordionItem(titulo, text){
 		height: "30",
 		top: "5",
 		width: "10%",
-		backgroundImage: "/blue-cross-icon.png"	
+		backgroundImage: "/blue-cross-icon.png"			
+	});
+	
+	elimina.addEventListener('click', function(e) {
+	    //aca se debe eliminar el modelo
+	    var mensajes = Alloy.createCollection('mensaje'); 
+		mensajes.fetch(); // Grab data from persistent storage
+		var mensaje = mensajes.get(id);		
+		var options = {
+            success: function(model, response) {		                
+			    //luego que se elimino el modelo se muestra el cambio en el tableview
+			    $.tabla.deleteRow(tvr,{});
+			    $.tabla.deleteRow(tvrTexto,{});
+            },
+            error: function(model, response) {
+				
+            }
+        };		
+		mensaje.destroy(options);
 	});
 	
 	boton.addEventListener('click', function(e) {
@@ -68,7 +86,13 @@ function addAccordionItem(titulo, text){
         	tvrTexto.height = 0;
         	dataLabel.objVisible = false;
         	boton.title = "Editar";	
-        	
+        	//aca va el llamado al modelo y se guarda el mensaje modificado
+        	var mensajes = Alloy.createCollection('mensaje'); 
+			mensajes.fetch(); // Grab data from persistent storage
+			var mensaje = mensajes.get(id);	
+			
+        	mensaje.set('mensaje', dataLabel.value);
+        	mensaje.save();
     	}
     	else
     	{
@@ -77,8 +101,6 @@ function addAccordionItem(titulo, text){
         	viewTexto.height = 140;
         	dataLabel.objVisible = true;
         	boton.title = "Guardar";
-        	
-        	//aca va el llamado al modelo y se guarda el mensaje modificado
     	}
 	});
 	
@@ -162,7 +184,7 @@ function addStaticAccordionItem(e){
         		//alert(dataLabel.value);
 	        	var mensaje = Alloy.createModel('mensaje',{titulo: label.value, mensaje: dataLabel.value});
 	        	mensaje.save();        		        	
-	        	addAccordionItem(label.value, dataLabel.value);
+	        	addAccordionItem(mensaje.get('id'),label.value, dataLabel.value);
 	        	
 	        	label.value = 'Nuevo Titulo';
 	        	dataLabel.value = '';
@@ -193,7 +215,7 @@ function initList(){
 	mensajes.fetch(); // Grab data from persistent storage
 	mensajes.each(
 		function (mensaje){
-			addAccordionItem(mensaje.get('titulo'),mensaje.get('mensaje'));
+			addAccordionItem(mensaje.get('id'),mensaje.get('titulo'),mensaje.get('mensaje'));
 		}
 	);
 }

@@ -1,1 +1,1 @@
-module.exports={"dependencies":{}};
+/home/koke/Titanium_Studio_Workspace/ProyectoMensajes/Resources/android/alloy/CFG.js

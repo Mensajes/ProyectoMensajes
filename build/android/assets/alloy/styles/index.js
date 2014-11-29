@@ -1,1 +1,1 @@
-module.exports = [];
+/home/koke/Titanium_Studio_Workspace/ProyectoMensajes/Resources/android/alloy/styles/index.js

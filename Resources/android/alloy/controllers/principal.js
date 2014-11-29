@@ -50,31 +50,36 @@ function Controller() {
             top: "3%",
             hintText: "Buscar"
         });
+        var lock = 0;
         texto.addEventListener("change", function() {
-            xhr = Titanium.Network.createHTTPClient();
-            var query = texto.value;
-            xhr.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?address=" + query);
-            xhr.onload = function() {
-                var json = JSON.parse(this.responseText);
-                tablaLugares.setData([]);
-                Ti.API.info("Nueva Repuesta");
-                for (var i = 0; json.results.length > i; i++) {
-                    Ti.API.info("response: " + JSON.stringify(json.results[i].formatted_address));
-                    var view = Ti.UI.createView({
-                        height: "40"
-                    });
-                    var row = Ti.UI.createTableViewRow({});
-                    var label = Ti.UI.createLabel({
-                        text: JSON.stringify(json.results[i].formatted_address),
-                        left: "5%",
-                        color: "#fff"
-                    });
-                    view.add(label);
-                    row.add(view);
-                    tablaLugares.appendRow(row);
-                }
-            };
-            xhr.send();
+            if (0 == lock) {
+                lock = 1;
+                xhr = Titanium.Network.createHTTPClient();
+                var query = texto.value;
+                xhr.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?address=" + query);
+                xhr.onload = function() {
+                    lock = 0;
+                    var json = JSON.parse(this.responseText);
+                    tablaLugares.setData([]);
+                    Ti.API.info("Nueva Repuesta");
+                    for (var i = 0; i < json.results.length; i++) {
+                        Ti.API.info("response: " + JSON.stringify(json.results[i].formatted_address));
+                        var view = Ti.UI.createView({
+                            height: "40"
+                        });
+                        var row = Ti.UI.createTableViewRow({});
+                        var label = Ti.UI.createLabel({
+                            text: JSON.stringify(json.results[i].formatted_address),
+                            left: "5%",
+                            color: "#fff"
+                        });
+                        view.add(label);
+                        row.add(view);
+                        tablaLugares.appendRow(row);
+                    }
+                };
+                xhr.send();
+            }
         });
         aview.add(texto);
         aview.add(tablaLugares);
@@ -97,9 +102,15 @@ function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "principal";
     if (arguments[0]) {
-        __processArg(arguments[0], "__parentSymbol");
-        __processArg(arguments[0], "$model");
-        __processArg(arguments[0], "__itemTemplate");
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
     }
     var $ = this;
     var exports = {};
