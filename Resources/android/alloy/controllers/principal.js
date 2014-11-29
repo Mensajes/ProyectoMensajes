@@ -50,6 +50,14 @@ function Controller() {
             top: "3%",
             hintText: "Buscar"
         });
+        var lugaresDialog = Ti.UI.createOptionDialog({
+            title: "Ubicación",
+            androidView: aview,
+            cancel: 2,
+            selectedIndex: 2,
+            destructive: 0,
+            buttonNames: [ "Aceptar", "Cancelar" ]
+        });
         var lock = 0;
         texto.addEventListener("change", function() {
             if (0 == lock) {
@@ -73,6 +81,10 @@ function Controller() {
                             left: "5%",
                             color: "#fff"
                         });
+                        row.addEventListener("click", function() {
+                            $.lugar.value = label.text;
+                            lugaresDialog.hide();
+                        });
                         view.add(label);
                         row.add(view);
                         tablaLugares.appendRow(row);
@@ -83,14 +95,6 @@ function Controller() {
         });
         aview.add(texto);
         aview.add(tablaLugares);
-        var lugaresDialog = Ti.UI.createOptionDialog({
-            title: "Ubicación",
-            androidView: aview,
-            cancel: 2,
-            selectedIndex: 2,
-            destructive: 0,
-            buttonNames: [ "Aceptar", "Cancelar" ]
-        });
         lugaresDialog.show();
     }
     function selectMensaje() {
