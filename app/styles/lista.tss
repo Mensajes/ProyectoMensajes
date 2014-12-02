@@ -6,7 +6,8 @@
 	top: "5%",
 	right: "3%",
 	width: "13%",
-	height: "9%"
+	height: "9%",
+	backgroundImage: "/memorycard-icon.png"
 },
 
 "#contactList":{
@@ -17,8 +18,8 @@
 "#row":{
 	borderColor: "#afafaf",
 	borderRadius: "5",
-	height: "40",
-	backgroundColor:'#e7e9e7',
+	height: "35",
+	//backgroundColor:'#e7e9e7',
 },
 
 "#nombre":{
@@ -37,11 +38,11 @@
 },
 
 "#check":{
-	width: "35",
-	height: "35",
+	width: "30",
+	height: "30",
 	right: "3%",
 	borderColor: "#afafaf",
-	borderRadius: "5",
+	borderRadius: "10",
 	backgroundColor: "#fff",
 	color: "#fff"
 }

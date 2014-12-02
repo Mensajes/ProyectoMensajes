@@ -44,13 +44,12 @@ function Controller() {
             textAlign: "left"
         });
         var boton = Titanium.UI.createButton({
-            title: "Editar",
             right: "14%",
             borderRadius: 5,
-            backgroundColor: "#0089e3",
+            backgroundImage: "/pencil-icon.png",
             height: "30",
             top: "5",
-            width: "20%"
+            width: "10%"
         });
         var elimina = Titanium.UI.createButton({
             right: "3%",
@@ -58,7 +57,7 @@ function Controller() {
             height: "30",
             top: "5",
             width: "10%",
-            backgroundImage: "/blue-cross-icon.png"
+            backgroundImage: "/denied-icon.png"
         });
         elimina.addEventListener("click", function() {
             var mensajes = Alloy.createCollection("mensaje");
@@ -78,7 +77,7 @@ function Controller() {
                 dataLabel.height = 0;
                 tvrTexto.height = 0;
                 dataLabel.objVisible = false;
-                boton.title = "Editar";
+                boton.backgroundImage = "/pencil-icon.png";
                 var mensajes = Alloy.createCollection("mensaje");
                 mensajes.fetch();
                 var mensaje = mensajes.get(id);
@@ -89,7 +88,7 @@ function Controller() {
                 tvrTexto.height = 80;
                 viewTexto.height = 140;
                 dataLabel.objVisible = true;
-                boton.title = "Guardar";
+                boton.backgroundImage = "/memorycard-icon.png";
             }
         });
         view.add(label);
@@ -135,20 +134,19 @@ function Controller() {
             textAlign: "left"
         });
         var boton = Titanium.UI.createButton({
-            title: "Crear",
+            backgroundImage: "/compose-icon.png",
             right: "3%",
             borderRadius: 5,
-            backgroundColor: "#0089e3",
             height: "30",
             top: "5",
-            width: "30%"
+            width: "10%"
         });
         boton.addEventListener("click", function() {
             if (true == dataLabel.objVisible) {
                 dataLabel.height = 0;
                 tvrTexto.height = 0;
                 dataLabel.objVisible = false;
-                boton.title = "Crear";
+                boton.backgroundImage = "/compose-icon.png";
                 if ("" != dataLabel.value) {
                     var mensaje = Alloy.createModel("mensaje", {
                         titulo: label.value,
@@ -164,7 +162,7 @@ function Controller() {
                 tvrTexto.height = 80;
                 viewTexto.height = 140;
                 dataLabel.objVisible = true;
-                boton.title = "Guardar";
+                boton.backgroundImage = "/memorycard-icon.png";
             }
         });
         view.add(label);
@@ -185,15 +183,9 @@ function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "configMensajes";
     if (arguments[0]) {
-        {
-            __processArg(arguments[0], "__parentSymbol");
-        }
-        {
-            __processArg(arguments[0], "$model");
-        }
-        {
-            __processArg(arguments[0], "__itemTemplate");
-        }
+        __processArg(arguments[0], "__parentSymbol");
+        __processArg(arguments[0], "$model");
+        __processArg(arguments[0], "__itemTemplate");
     }
     var $ = this;
     var exports = {};
@@ -219,12 +211,12 @@ function Controller() {
         right: "3%",
         width: "12%",
         height: "10%",
-        backgroundImage: "/blue-search-icon.png",
+        backgroundImage: "/magnifying-glass-icon.png",
         id: "lupa"
     });
     $.__views.index.add($.__views.lupa);
     $.__views.tabla = Ti.UI.createTableView({
-        top: "35%",
+        top: "20%",
         height: "80%",
         id: "tabla"
     });

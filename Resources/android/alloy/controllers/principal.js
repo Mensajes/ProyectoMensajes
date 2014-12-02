@@ -70,7 +70,7 @@ function Controller() {
                     var json = JSON.parse(this.responseText);
                     tablaLugares.setData([]);
                     Ti.API.info("Nueva Repuesta");
-                    for (var i = 0; i < json.results.length; i++) {
+                    for (var i = 0; json.results.length > i; i++) {
                         Ti.API.info("response: " + JSON.stringify(json.results[i].formatted_address));
                         var view = Ti.UI.createView({
                             height: "40"
@@ -106,15 +106,9 @@ function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "principal";
     if (arguments[0]) {
-        {
-            __processArg(arguments[0], "__parentSymbol");
-        }
-        {
-            __processArg(arguments[0], "$model");
-        }
-        {
-            __processArg(arguments[0], "__itemTemplate");
-        }
+        __processArg(arguments[0], "__parentSymbol");
+        __processArg(arguments[0], "$model");
+        __processArg(arguments[0], "__itemTemplate");
     }
     var $ = this;
     var exports = {};
@@ -143,7 +137,7 @@ function Controller() {
         right: "10%",
         height: "10%",
         width: "12%",
-        backgroundImage: "/blue-calendar-icon.png",
+        backgroundImage: "/calendar-icon.png",
         id: "calendarIcon"
     });
     $.__views.win.add($.__views.calendarIcon);
@@ -169,7 +163,7 @@ function Controller() {
         right: "10%",
         height: "10%",
         width: "12%",
-        backgroundImage: "/blue-clock-icon.png",
+        backgroundImage: "/clock-icon.png",
         id: "clockIcon"
     });
     $.__views.win.add($.__views.clockIcon);
@@ -196,7 +190,7 @@ function Controller() {
         right: "10%",
         height: "10%",
         width: "12%",
-        backgroundImage: "/blue-balloon-plus-icon.png",
+        backgroundImage: "/mail-icon.png",
         id: "mensajeIcon"
     });
     $.__views.win.add($.__views.mensajeIcon);
@@ -222,7 +216,7 @@ function Controller() {
         height: "10%",
         width: "12%",
         top: "44%",
-        backgroundImage: "/blue-user-icon.png",
+        backgroundImage: "/contacts-icon.png",
         id: "destinoIcon"
     });
     $.__views.win.add($.__views.destinoIcon);
@@ -238,7 +232,7 @@ function Controller() {
         height: "10%",
         id: "lugar",
         editable: "false",
-        hintText: "Ubicacion"
+        hintText: "Ubicación"
     });
     $.__views.win.add($.__views.lugar);
     dialogoLugar ? $.__views.lugar.addEventListener("click", dialogoLugar) : __defers["$.__views.lugar!click!dialogoLugar"] = true;
@@ -248,7 +242,7 @@ function Controller() {
         right: "10%",
         height: "10%",
         width: "12%",
-        backgroundImage: "/blue-home-icon.png",
+        backgroundImage: "/compass-icon.png",
         id: "lugarIcon"
     });
     $.__views.win.add($.__views.lugarIcon);
@@ -256,7 +250,7 @@ function Controller() {
     $.__views.enviar = Ti.UI.createButton({
         bottom: "5%",
         borderRadius: 5,
-        backgroundColor: "#0071bc",
+        backgroundColor: "#079fbb",
         width: "30%",
         height: "12%",
         title: "Enviar",

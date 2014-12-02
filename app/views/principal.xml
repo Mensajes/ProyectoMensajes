@@ -13,7 +13,7 @@
 			<TextField id="destino" editable="false" onClick="selectLista" onFocus="selectLista" hintText="Contactos"></TextField>
 			<Button id="destinoIcon" onClick="selectLista"></Button>
 			
-			<TextField id="lugar" onClick="dialogoLugar" editable="false" onFocus="dialogoLugar" hintText="Ubicacion"></TextField>
+			<TextField id="lugar" onClick="dialogoLugar" editable="false" onFocus="dialogoLugar" hintText="Ubicación"></TextField>
 			<Button id="lugarIcon" onClick="dialogoLugar"></Button>
 			
 			<Button id="enviar">Enviar</Button>

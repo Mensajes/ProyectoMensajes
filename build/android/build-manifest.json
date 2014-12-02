@@ -2,12 +2,12 @@
 	"target": "device",
 	"deployType": "test",
 	"classname": "Mensajes",
-	"platformPath": "/home/koke/.titanium/mobilesdk/linux/3.4.1.GA/android",
+	"platformPath": "C:\\ProgramData\\Titanium\\mobilesdk\\win32\\3.3.0.GA\\android",
 	"modulesHash": "d41d8cd98f00b204e9800998ecf8427e",
 	"modulesManifestHash": "d41d8cd98f00b204e9800998ecf8427e",
 	"modulesNativeHash": "d41d8cd98f00b204e9800998ecf8427e",
 	"modulesBindingsHash": "d41d8cd98f00b204e9800998ecf8427e",
-	"gitHash": "5982e8f",
+	"gitHash": "787cd39",
 	"name": "mensajes",
 	"id": "com.opp.mensajes",
 	"analytics": true,
@@ -23,10 +23,10 @@
 	"mergeCustomAndroidManifest": false,
 	"encryptJS": true,
 	"minSDK": 10,
-	"targetSDK": 16,
+	"targetSDK": "15",
 	"propertiesHash": "320857e9943785652fbd60df5a0c4a1a",
 	"activitiesHash": "d41d8cd98f00b204e9800998ecf8427e",
 	"servicesHash": "d41d8cd98f00b204e9800998ecf8427e",
 	"jssFilesHash": "d41d8cd98f00b204e9800998ecf8427e",
-	"jarLibHash": "f2a3779b768e31753172f8ff56d419fd"
+	"jarLibHash": "cb091b3f793b21886218ba2a308c1447"
 }

@@ -15,17 +15,17 @@ function Controller() {
                 viw.backgroundColor = specs.unCheckedColor || "white";
             } else {
                 viw.checked = true;
-                viw.backgroundColor = specs.checkedColor || "#0071bc";
+                viw.backgroundColor = specs.checkedColor || "#079fbb";
             }
         }
         "object" != typeof specs && (specs = {});
-        specs.width = specs.width || 45;
+        specs.width = specs.width || 35;
         specs.backgroundColor = specs.unCheckedColor || "white";
-        specs.height = specs.height || 45;
+        specs.height = specs.height || 35;
         specs.border = specs.border || 5;
         specs.right = specs.right || "3%";
         specs.borderColor = specs.borderColor || "silver";
-        specs.borderRadius = specs.borderRadius || 5;
+        specs.borderRadius = specs.borderRadius || 10;
         var viw = Ti.UI.createView(specs);
         viw.addEventListener("click", togglecheck);
         return viw;
@@ -33,15 +33,9 @@ function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "lista";
     if (arguments[0]) {
-        {
-            __processArg(arguments[0], "__parentSymbol");
-        }
-        {
-            __processArg(arguments[0], "$model");
-        }
-        {
-            __processArg(arguments[0], "__itemTemplate");
-        }
+        __processArg(arguments[0], "__parentSymbol");
+        __processArg(arguments[0], "$model");
+        __processArg(arguments[0], "__itemTemplate");
     }
     var $ = this;
     var exports = {};
@@ -68,8 +62,8 @@ function Controller() {
         right: "3%",
         width: "13%",
         height: "9%",
-        id: "guardar",
-        backgroundImage: "/blue-disk-icon.png"
+        backgroundImage: "/memorycard-icon.png",
+        id: "guardar"
     });
     $.__views.ventana.add($.__views.guardar);
     $.__views.contactList = Ti.UI.createTableView({
@@ -84,7 +78,7 @@ function Controller() {
     var multiValue = [ "email", "phone" ];
     var people = Ti.Contacts.getAllPeople();
     var activityIndicator = Ti.UI.createActivityIndicator({
-        color: "#0071bc",
+        color: "#079fbb",
         font: {
             fontFamily: "Helvetica Neue",
             fontSize: 20,
@@ -107,8 +101,7 @@ function Controller() {
             var vista = Ti.UI.createView({
                 borderColor: "#afafaf",
                 borderRadius: "5",
-                height: "50",
-                backgroundColor: "#e7e9e7"
+                height: "45"
             });
             var nombreContacto = Ti.UI.createLabel({
                 text: person[singleValue[1]],

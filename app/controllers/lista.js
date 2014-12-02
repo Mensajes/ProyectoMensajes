@@ -6,7 +6,7 @@ var multiValue = ['email', 'phone'];
 var people = Ti.Contacts.getAllPeople();
 
 var activityIndicator = Ti.UI.createActivityIndicator({
-  color: '#0071bc',
+  color: '#079fbb',
   font: {fontFamily:'Helvetica Neue', fontSize:20, fontWeight:'bold'},
   message: 'Loading...',
   style: Ti.UI.ActivityIndicatorStyle.BIG_DARK,
@@ -32,8 +32,8 @@ for (var i=0, ilen=people.length; i<ilen; i++){
 			var vista = Ti.UI.createView({
 				borderColor: "#afafaf",
 				borderRadius: "5",
-				height: "50",
-				backgroundColor:'#e7e9e7',	
+				height: "45",
+				//backgroundColor:'#e7e9e7',	
 			});	
 			
 			var nombreContacto = Ti.UI.createLabel({
@@ -84,20 +84,21 @@ activityIndicator.hide();
 function createCheckbox (specs) {
     if(typeof specs != "object")
         specs = {};
-    specs.width = specs.width || 45;
+    specs.width = specs.width || 35;
     
     specs.backgroundColor = specs.unCheckedColor || "white";
-    specs.height = specs.height || 45;
+    specs.height = specs.height || 35;
     specs.border = specs.border || 5;
     specs.right =  specs.right || "3%";
     specs.borderColor = specs.borderColor || "silver";
-    specs.borderRadius = specs.borderRadius || 5;
+    specs.borderRadius = specs.borderRadius || 10;
     var viw = Ti.UI.createView(specs);
 
     function togglecheck () {
         if(!viw.checked) {
             viw.checked = true;
-            viw.backgroundColor = specs.checkedColor || "#0071bc";
+            viw.backgroundColor = specs.checkedColor || "#079fbb";
+            //backgroundColor: "#079fbb",
         }
         else {
             viw.checked = false;

@@ -1,5 +1,5 @@
 
-$.agregar.addEventListener("click", function(e){
+/*$.agregar.addEventListener("click", function(e){
 	var texto = Ti.UI.createLabel({
 		text: "Prueba",
 		color: "#000",
@@ -31,11 +31,12 @@ $.agregar.addEventListener("click", function(e){
 	view.add(editar);
 	tvr.add(view);
 	$.tabla.appendRow(tvr);
-});
+});*/
 
 function openwin(e){
 	var w = Alloy.createController('lista').getView();
 	w.open();
 };
+
 
 $.configContactos.open();

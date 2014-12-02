@@ -26,7 +26,7 @@
 	right: "10%",
 	height: "10%",
 	width: "12%",
-	backgroundImage: "/blue-calendar-icon.png" 
+	backgroundImage: "/calendar-icon.png" 
 },
 
 "#hora": {
@@ -41,7 +41,7 @@
 	right: "10%",
 	height: "10%",
 	width: "12%",
-	backgroundImage: "/blue-clock-icon.png"
+	backgroundImage: "/clock-icon.png"
 }
 
 "#mensaje":{
@@ -59,7 +59,7 @@
 	right: "10%",
 	height: "10%",
 	width: "12%",
-	backgroundImage: "/blue-balloon-plus-icon.png"
+	backgroundImage: "/mail-icon.png"
 },
 
 "#destino":{
@@ -77,7 +77,7 @@
 	height: "10%",
 	width: "12%",
 	top:"44%",
-	backgroundImage: "/blue-user-icon.png"
+	backgroundImage: "/contacts-icon.png"
 },
 
 "#lugar":{
@@ -92,14 +92,14 @@
 	right: "10%",
 	height: "10%",
 	width: "12%",
-	backgroundImage: "/blue-home-icon.png"
+	backgroundImage: "/compass-icon.png"
 },
 
 "#enviar": {
 	bottom: "5%",
 	borderRadius: 5,
-	backgroundColor: "#0071bc",
+	//backgroundColor: "#0071bc",
+	backgroundColor: "#079fbb",
 	width: "30%",
 	height: "12%"
 }
-

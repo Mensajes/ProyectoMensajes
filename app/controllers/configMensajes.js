@@ -42,14 +42,14 @@ function addAccordionItem(id,titulo, text){
 	});
 	
 	var boton = Titanium.UI.createButton({
-		title: 'Editar',
 		right: '14%',
 		borderRadius: 5,
 		//backgroundColor: "#089ad4",
-		backgroundColor: "#0089e3",
+		//backgroundColor: "#0089e3",
+		backgroundImage: "/pencil-icon.png",
 		height: "30",
 		top: "5",
-		width: "20%"	
+		width: "10%"	
 	});
 	
 	var elimina = Titanium.UI.createButton({
@@ -58,7 +58,7 @@ function addAccordionItem(id,titulo, text){
 		height: "30",
 		top: "5",
 		width: "10%",
-		backgroundImage: "/blue-cross-icon.png"			
+		backgroundImage: "/denied-icon.png"			
 	});
 	
 	elimina.addEventListener('click', function(e) {
@@ -85,7 +85,8 @@ function addAccordionItem(id,titulo, text){
         	dataLabel.height = 0;
         	tvrTexto.height = 0;
         	dataLabel.objVisible = false;
-        	boton.title = "Editar";	
+        	//boton.title = "Editar";
+        	boton.backgroundImage = "/pencil-icon.png";	
         	//aca va el llamado al modelo y se guarda el mensaje modificado
         	var mensajes = Alloy.createCollection('mensaje'); 
 			mensajes.fetch(); // Grab data from persistent storage
@@ -100,7 +101,8 @@ function addAccordionItem(id,titulo, text){
         	tvrTexto.height = 80;
         	viewTexto.height = 140;
         	dataLabel.objVisible = true;
-        	boton.title = "Guardar";
+        	//boton.title = "Guardar";
+        	boton.backgroundImage = "/memorycard-icon.png";
     	}
 	});
 	
@@ -162,15 +164,17 @@ function addStaticAccordionItem(e){
 	});
 	
 	var boton = Titanium.UI.createButton({
-		title: 'Crear',
+		//title: 'Crear',
+		backgroundImage: "/compose-icon.png",
 		right: '3%',
 		borderRadius: 5,
 		//backgroundColor: "#089ad4",
-		backgroundColor: "#0089e3",
+		//backgroundColor: "#0089e3",
 		height: "30",
 		top: "5",
-		width: "30%"	
+		width: "10%"	
 	});
+	
 	
 	boton.addEventListener('click', function(e) {
 		if(dataLabel.objVisible == true)
@@ -178,7 +182,8 @@ function addStaticAccordionItem(e){
         	dataLabel.height = 0;
         	tvrTexto.height = 0;
         	dataLabel.objVisible = false;
-        	boton.title = "Crear";	
+        	//boton.title = "Crear";
+        	boton.backgroundImage = "/compose-icon.png";	
         	
         	if (dataLabel.value != ""){
         		//alert(dataLabel.value);
@@ -196,7 +201,8 @@ function addStaticAccordionItem(e){
         	tvrTexto.height = 80;
         	viewTexto.height = 140;
         	dataLabel.objVisible = true;
-        	boton.title = "Guardar";
+        	//boton.title = "Guardar";
+        	boton.backgroundImage = "/memorycard-icon.png";
     	}
 	});
 	

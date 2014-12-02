@@ -105,9 +105,7 @@ exports.DIR = {
 	MAP: 'build/map',
 	VENDOR: 'vendor',
 	THEME: 'themes',
-	BUILD: 'build/alloy',
-	I18N: 'i18n',
-	PLATFORM: 'platform'
+	BUILD: 'build/alloy'
 };
 // folders/files to exclude when copying and processing files
 // RegEx format: must escape special chars - so use \.svn not .svn
@@ -169,7 +167,6 @@ exports.IMPLICIT_NAMESPACES = {
 	// Ti.Android
 	Menu: NS_TI_ANDROID,
 	MenuItem: NS_TI_ANDROID,
-	ActionBar: NS_TI_ANDROID,
 
 	// Ti.Map
 	Annotation: NS_TI_MAP,
@@ -198,8 +195,6 @@ exports.IMPLICIT_NAMESPACES = {
 	// Ti.UI.Window
 	LeftNavButton: 'Ti.UI.Window',
 	RightNavButton: 'Ti.UI.Window',
-	LeftNavButtons: 'Ti.UI.Window',
-	RightNavButtons: 'Ti.UI.Window',
 	TitleControl: 'Ti.UI.Window',
 
 	// Ti.UI.iPad.Popover
@@ -219,11 +214,3 @@ exports.IMPLICIT_NAMESPACES = {
 	KeyboardToolbar: '_ProxyProperty',
 
 };
-
-// properties named with "on" that aren't used to signify event listeners
-exports.SPECIAL_PROPERTY_NAMES = [
-	'onHomeIconItemSelected',
-	'onTintColor',
-	'onCreateOptionsMenu',
-	'onPrepareOptionsMenu'
-];

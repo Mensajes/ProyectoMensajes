@@ -1,7 +1,7 @@
 <Alloy>
 	<Window id="ventana" windowSoftInputMode="Ti.UI.Android.SOFT_INPUT_ADJUST_PAN">
 		<TextField id="nombre" hintText="Nombre Lista"></TextField>
-		<Button id="guardar" backgroundImage="/blue-disk-icon.png"></Button>
+		<Button id="guardar"></Button>
 		
 		<TableView id="contactList">
             	

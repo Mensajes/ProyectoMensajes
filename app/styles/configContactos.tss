@@ -14,7 +14,7 @@
 },
 
 "TableView":{
-	top: "35%",
+	top: "20%",
 	height: "80%"
 },
 
@@ -37,7 +37,8 @@
 	top: "5%",
 	right: "3%",
 	width: "12%",
-	height: "10%"
+	height: "10%",
+	backgroundImage: "/magnifying-glass-icon.png"
 },
 
 "#contactoIcon":{
@@ -51,7 +52,7 @@
 	borderColor: "#afafaf",
 	borderRadius: "5",
 	height: "40",
-	backgroundColor:'#e7e9e7',
+	//backgroundColor:'#e7e9e7'
 },
 
 "#newLista":{
@@ -62,8 +63,10 @@
 "#rowButton":{
 	right: '3%',
 	borderRadius: 5,
-	backgroundColor: "#0089e3",
+	//backgroundColor: "#0089e3",
 	height: "30",
 	top: "5",
-	width: "30%"		
+	width: "10%",
+	backgroundImage: '/contacts-icon.png'
+			
 }
