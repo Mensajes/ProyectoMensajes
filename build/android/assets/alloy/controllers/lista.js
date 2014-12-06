@@ -25,7 +25,7 @@ function Controller() {
         specs.border = specs.border || 5;
         specs.right = specs.right || "3%";
         specs.borderColor = specs.borderColor || "silver";
-        specs.borderRadius = specs.borderRadius || 10;
+        specs.borderRadius = specs.borderRadius || 35;
         var viw = Ti.UI.createView(specs);
         viw.addEventListener("click", togglecheck);
         return viw;

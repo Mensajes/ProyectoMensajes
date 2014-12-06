@@ -98,7 +98,7 @@
 "#enviar": {
 	bottom: "5%",
 	borderRadius: 5,
-	//backgroundColor: "#0071bc",
+	//backgroundColor: "#07bbaa",
 	backgroundColor: "#079fbb",
 	width: "30%",
 	height: "12%"

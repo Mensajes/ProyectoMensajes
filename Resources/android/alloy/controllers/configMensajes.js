@@ -16,13 +16,13 @@ function Controller() {
         var view = Titanium.UI.createView({
             borderColor: "#afafaf",
             borderRadius: "5",
-            height: "40"
+            height: "45"
         });
         var viewTexto = Titanium.UI.createView({
             borderColor: "#afafaf",
             borderRadius: "5",
             height: "40",
-            backgroundColor: "#e7e9e7"
+            backgroundColor: "#d5ece6"
         });
         var label = Titanium.UI.createLabel({
             text: titulo,
@@ -30,9 +30,10 @@ function Controller() {
             color: "#000"
         });
         var dataLabel = Titanium.UI.createTextArea({
+            top: "22%",
             height: "0",
             objVisible: "false",
-            backgroundColor: "#e7e9e7",
+            backgroundColor: "#d5ece6",
             color: "#000",
             width: "100%",
             value: text,
@@ -47,16 +48,16 @@ function Controller() {
             right: "14%",
             borderRadius: 5,
             backgroundImage: "/pencil-icon.png",
-            height: "30",
+            height: "35",
             top: "5",
-            width: "10%"
+            width: "11%"
         });
         var elimina = Titanium.UI.createButton({
             right: "3%",
             borderRadius: 5,
-            height: "30",
+            height: "35",
             top: "5",
-            width: "10%",
+            width: "11%",
             backgroundImage: "/denied-icon.png"
         });
         elimina.addEventListener("click", function() {
@@ -85,8 +86,8 @@ function Controller() {
                 mensaje.save();
             } else {
                 dataLabel.height = Ti.UI.SIZE;
-                tvrTexto.height = 80;
                 viewTexto.height = 140;
+                tvrTexto.height = 80;
                 dataLabel.objVisible = true;
                 boton.backgroundImage = "/memorycard-icon.png";
             }
@@ -218,7 +219,8 @@ function Controller() {
     $.__views.tabla = Ti.UI.createTableView({
         top: "20%",
         height: "80%",
-        id: "tabla"
+        id: "tabla",
+        windowSoftInputMode: Ti.UI.Android.SOFT_INPUT_ADJUST_PAN
     });
     $.__views.index.add($.__views.tabla);
     $.__views.configMensajes = Ti.UI.createTab({

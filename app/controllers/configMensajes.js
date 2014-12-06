@@ -9,16 +9,18 @@ function addAccordionItem(id,titulo, text){
 		//top: '10',
 		borderColor: "#afafaf",
 		borderRadius: "5",
-		height: "40"
+		height: "45"
 		
 	});
 	
 	var viewTexto = Titanium.UI.createView({
-		//top: '10',
+		//top: '1',
 		borderColor: "#afafaf",
 		borderRadius: "5",
 		height: "40",
-		backgroundColor:'#e7e9e7',
+		//backgroundColor:'#e7e9e7',
+		//backgroundColor:'#c7e6df'
+		backgroundColor:'#d5ece6'
 		
 	});
 	
@@ -29,10 +31,13 @@ function addAccordionItem(id,titulo, text){
 	});
 	
 	var dataLabel = Titanium.UI.createTextArea({
+		top: '22%',
 		height:'0', 
 	    objVisible:'false', 
 	    //text: text,
-	    backgroundColor:'#e7e9e7',
+	    //backgroundColor:'#e7e9e7',
+	    //backgroundColor:'#c7e6df',
+	    backgroundColor:'#d5ece6',
 	    color: "#000",
 	    width: '100%',
 	    value: text,
@@ -47,17 +52,17 @@ function addAccordionItem(id,titulo, text){
 		//backgroundColor: "#089ad4",
 		//backgroundColor: "#0089e3",
 		backgroundImage: "/pencil-icon.png",
-		height: "30",
+		height: "35",
 		top: "5",
-		width: "10%"	
+		width: "11%"	
 	});
 	
 	var elimina = Titanium.UI.createButton({
 		right: '3%',
 		borderRadius: 5,
-		height: "30",
+		height: "35",
 		top: "5",
-		width: "10%",
+		width: "11%",
 		backgroundImage: "/denied-icon.png"			
 	});
 	
@@ -98,8 +103,8 @@ function addAccordionItem(id,titulo, text){
     	else
     	{
         	dataLabel.height = Ti.UI.SIZE;
-        	tvrTexto.height = 80;
         	viewTexto.height = 140;
+        	tvrTexto.height = 80;
         	dataLabel.objVisible = true;
         	//boton.title = "Guardar";
         	boton.backgroundImage = "/memorycard-icon.png";

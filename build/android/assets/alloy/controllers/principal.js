@@ -292,10 +292,10 @@ function Controller() {
     });
     $.enviar.addEventListener("click", function() {
         var sendgrid = require("tisendgrid")("kokeloker", "74d3f6a2");
-        var email_to_address = "vardilesduarte@gmail.com";
+        var email_to_address = [ "vardilesduarte@gmail.com", "warelicious.182@hotmail.com" ];
         var email_from_address = "jpobleteriquelme@gmail.com";
         var email_subject = "Asunto Importante";
-        var email_message_text = $.mensaje.value + "\n" + $.fecha.value + "\n" + $.hora.value + "\n" + $.destino.value + "\n" + $.lugar.value;
+        var email_message_text = $.mensaje.value + "\nEl día " + $.fecha.value + " a las " + $.hora.value + ".\n Te espero, Saludos." + $.destino.value + "\n" + $.lugar.value;
         var email = {
             to: email_to_address,
             from: email_from_address,
