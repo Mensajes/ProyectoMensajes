@@ -8,11 +8,8 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function addAccordionItem(id, titulo, text) {
+    function getAccordionItemRow(id, titulo, text) {
         var tvr = Titanium.UI.createTableViewRow({});
-        var tvrTexto = Titanium.UI.createTableViewRow({
-            height: 0
-        });
         var view = Titanium.UI.createView({
             borderColor: "#afafaf",
             borderRadius: "5",
@@ -22,7 +19,8 @@ function Controller() {
             borderColor: "#afafaf",
             borderRadius: "5",
             height: "40",
-            backgroundColor: "#d5ece6"
+            backgroundColor: "#d5ece6",
+            height: 0
         });
         var label = Titanium.UI.createLabel({
             text: titulo,
@@ -67,16 +65,14 @@ function Controller() {
             var options = {
                 success: function() {
                     $.tabla.deleteRow(tvr, {});
-                    $.tabla.deleteRow(tvrTexto, {});
-                },
-                error: function() {}
+                }
             };
             mensaje.destroy(options);
         });
         boton.addEventListener("click", function() {
             if (true == dataLabel.objVisible) {
                 dataLabel.height = 0;
-                tvrTexto.height = 0;
+                viewTexto.height = 0;
                 dataLabel.objVisible = false;
                 boton.backgroundImage = "/pencil-icon.png";
                 var mensajes = Alloy.createCollection("mensaje");
@@ -86,8 +82,7 @@ function Controller() {
                 mensaje.save();
             } else {
                 dataLabel.height = Ti.UI.SIZE;
-                viewTexto.height = 140;
-                tvrTexto.height = 80;
+                viewTexto.height = 80;
                 dataLabel.objVisible = true;
                 boton.backgroundImage = "/memorycard-icon.png";
             }
@@ -97,15 +92,11 @@ function Controller() {
         view.add(elimina);
         viewTexto.add(dataLabel);
         tvr.add(view);
-        tvrTexto.add(viewTexto);
-        $.tabla.insertRowAfter(1, tvrTexto);
-        $.tabla.insertRowAfter(1, tvr);
+        tvr.add(viewTexto);
+        return tvr;
     }
-    function addStaticAccordionItem() {
+    function getStaticAccordionItemRow() {
         var tvr = Titanium.UI.createTableViewRow({});
-        var tvrTexto = Titanium.UI.createTableViewRow({
-            height: 0
-        });
         var view = Titanium.UI.createView({
             borderColor: "#afafaf",
             borderRadius: "5",
@@ -115,7 +106,8 @@ function Controller() {
             borderColor: "#afafaf",
             borderRadius: "5",
             height: "40",
-            backgroundColor: "#e7e9e7"
+            backgroundColor: "#e7e9e7",
+            height: 0
         });
         var label = Titanium.UI.createTextField({
             value: "Nuevo Titulo",
@@ -145,7 +137,8 @@ function Controller() {
         boton.addEventListener("click", function() {
             if (true == dataLabel.objVisible) {
                 dataLabel.height = 0;
-                tvrTexto.height = 0;
+                viewTexto.height = 0;
+                tvr.height = 60;
                 dataLabel.objVisible = false;
                 boton.backgroundImage = "/compose-icon.png";
                 if ("" != dataLabel.value) {
@@ -159,9 +152,9 @@ function Controller() {
                     dataLabel.value = "";
                 }
             } else {
-                dataLabel.height = Ti.UI.SIZE;
-                tvrTexto.height = 80;
-                viewTexto.height = 140;
+                dataLabel.height = 60;
+                viewTexto.height = 80;
+                tvr.height = 200;
                 dataLabel.objVisible = true;
                 boton.backgroundImage = "/memorycard-icon.png";
             }
@@ -170,16 +163,17 @@ function Controller() {
         view.add(boton);
         viewTexto.add(dataLabel);
         tvr.add(view);
-        tvrTexto.add(viewTexto);
-        $.tabla.insertRowBefore(0, tvrTexto);
-        $.tabla.insertRowBefore(0, tvr);
+        tvr.add(viewTexto);
+        return tvr;
     }
     function initList() {
         var mensajes = Alloy.createCollection("mensaje");
         mensajes.fetch();
+        data.push(getStaticAccordionItemRow());
         mensajes.each(function(mensaje) {
-            addAccordionItem(mensaje.get("id"), mensaje.get("titulo"), mensaje.get("mensaje"));
+            data.push(getAccordionItemRow(mensaje.get("id"), mensaje.get("titulo"), mensaje.get("mensaje")));
         });
+        $.tabla.setData(data);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "configMensajes";
@@ -237,7 +231,8 @@ function Controller() {
     $.__views.configMensajes && $.addTopLevelView($.__views.configMensajes);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    addStaticAccordionItem();
+    $.buscar.addEventListener("change", function() {});
+    var data = [];
     initList();
     $.configMensajes.open();
     _.extend($, exports);
