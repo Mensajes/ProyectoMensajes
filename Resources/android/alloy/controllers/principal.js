@@ -70,7 +70,7 @@ function Controller() {
                     var json = JSON.parse(this.responseText);
                     tablaLugares.setData([]);
                     Ti.API.info("Nueva Repuesta");
-                    for (var i = 0; json.results.length > i; i++) {
+                    for (var i = 0; i < json.results.length; i++) {
                         Ti.API.info("response: " + JSON.stringify(json.results[i].formatted_address));
                         var view = Ti.UI.createView({
                             height: "40"
@@ -106,9 +106,15 @@ function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "principal";
     if (arguments[0]) {
-        __processArg(arguments[0], "__parentSymbol");
-        __processArg(arguments[0], "$model");
-        __processArg(arguments[0], "__itemTemplate");
+        {
+            __processArg(arguments[0], "__parentSymbol");
+        }
+        {
+            __processArg(arguments[0], "$model");
+        }
+        {
+            __processArg(arguments[0], "__itemTemplate");
+        }
     }
     var $ = this;
     var exports = {};

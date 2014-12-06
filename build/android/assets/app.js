@@ -1,3 +1,1 @@
-var Alloy = require("alloy"), _ = Alloy._, Backbone = Alloy.Backbone;
-
-Alloy.createController("index");
+/home/koke/Titanium_Studio_Workspace/ProyectoMensajes/Resources/android/app.js
