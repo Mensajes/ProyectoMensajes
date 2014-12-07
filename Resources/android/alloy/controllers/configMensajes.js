@@ -9,7 +9,9 @@ function __processArg(obj, key) {
 
 function Controller() {
     function getAccordionItemRow(id, titulo, text) {
-        var tvr = Titanium.UI.createTableViewRow({});
+        var tvr = Titanium.UI.createTableViewRow({
+            height: "45"
+        });
         var view = Titanium.UI.createView({
             top: "0",
             borderColor: "#afafaf",
@@ -30,7 +32,7 @@ function Controller() {
             color: "#000"
         });
         var dataLabel = Titanium.UI.createTextArea({
-            top: "22%",
+            top: "0",
             height: "0",
             objVisible: "false",
             backgroundColor: "#d5ece6",
@@ -73,6 +75,7 @@ function Controller() {
         });
         boton.addEventListener("click", function() {
             if (true == dataLabel.objVisible) {
+                tvr.height = 45;
                 dataLabel.height = 0;
                 viewTexto.height = 0;
                 dataLabel.objVisible = false;
@@ -83,9 +86,11 @@ function Controller() {
                 mensaje.set("mensaje", dataLabel.value);
                 mensaje.save();
             } else {
-                dataLabel.height = Ti.UI.SIZE;
-                viewTexto.height = 140;
+                tvr.height = 125;
                 dataLabel.objVisible = true;
+                dataLabel.height = Ti.UI.SIZE;
+                viewTexto.height = 80;
+                viewTexto.top = 45;
                 boton.backgroundImage = "/memorycard-icon.png";
             }
         });
@@ -100,16 +105,18 @@ function Controller() {
     function getStaticAccordionItemRow() {
         var tvr = Titanium.UI.createTableViewRow({});
         var view = Titanium.UI.createView({
+            top: "0",
             borderColor: "#afafaf",
             borderRadius: "5",
-            height: "40"
+            height: "45"
         });
         var viewTexto = Titanium.UI.createView({
+            top: "45",
             borderColor: "#afafaf",
             borderRadius: "5",
             height: "40",
             backgroundColor: "#e7e9e7",
-            height: 0
+            height: "0"
         });
         var label = Titanium.UI.createTextField({
             value: "Nuevo Titulo",
@@ -117,6 +124,7 @@ function Controller() {
             color: "#000"
         });
         var dataLabel = Titanium.UI.createTextArea({
+            top: "0",
             height: "0",
             objVisible: "false",
             backgroundColor: "#e7e9e7",
@@ -140,7 +148,7 @@ function Controller() {
             if (true == dataLabel.objVisible) {
                 dataLabel.height = 0;
                 viewTexto.height = 0;
-                tvr.height = 60;
+                tvr.height = 45;
                 dataLabel.objVisible = false;
                 boton.backgroundImage = "/compose-icon.png";
                 if ("" != dataLabel.value) {
@@ -156,7 +164,7 @@ function Controller() {
             } else {
                 dataLabel.height = 60;
                 viewTexto.height = 80;
-                tvr.height = 200;
+                tvr.height = 125;
                 dataLabel.objVisible = true;
                 boton.backgroundImage = "/memorycard-icon.png";
             }
