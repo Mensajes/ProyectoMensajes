@@ -3,12 +3,16 @@ $.buscar.addEventListener('change',function (e){
 });
 function getAccordionItemRow(id,titulo, text){
 	var tvr = Titanium.UI.createTableViewRow({});
+	
 	var view = Titanium.UI.createView({
+		top: "0",
 		borderColor: "#afafaf",
 		borderRadius: "5",
 		height: "45"
 	});
+	
 	var viewTexto = Titanium.UI.createView({
+		top: "45",
 		borderColor: "#afafaf",
 		borderRadius: "5",
 		height: "40",
@@ -78,8 +82,8 @@ function getAccordionItemRow(id,titulo, text){
     	else
     	{
         	dataLabel.height = Ti.UI.SIZE;
-        	//viewTexto.height = 140;
-        	viewTexto.height = 80;
+        	viewTexto.height = 140;
+        	//viewTexto.height = 80;
         	dataLabel.objVisible = true;
         	boton.backgroundImage = "/memorycard-icon.png";
     	}

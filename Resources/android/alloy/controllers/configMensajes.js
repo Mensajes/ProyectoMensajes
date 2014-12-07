@@ -11,11 +11,13 @@ function Controller() {
     function getAccordionItemRow(id, titulo, text) {
         var tvr = Titanium.UI.createTableViewRow({});
         var view = Titanium.UI.createView({
+            top: "0",
             borderColor: "#afafaf",
             borderRadius: "5",
             height: "45"
         });
         var viewTexto = Titanium.UI.createView({
+            top: "45",
             borderColor: "#afafaf",
             borderRadius: "5",
             height: "40",
@@ -82,7 +84,7 @@ function Controller() {
                 mensaje.save();
             } else {
                 dataLabel.height = Ti.UI.SIZE;
-                viewTexto.height = 80;
+                viewTexto.height = 140;
                 dataLabel.objVisible = true;
                 boton.backgroundImage = "/memorycard-icon.png";
             }
@@ -178,15 +180,9 @@ function Controller() {
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "configMensajes";
     if (arguments[0]) {
-        {
-            __processArg(arguments[0], "__parentSymbol");
-        }
-        {
-            __processArg(arguments[0], "$model");
-        }
-        {
-            __processArg(arguments[0], "__itemTemplate");
-        }
+        __processArg(arguments[0], "__parentSymbol");
+        __processArg(arguments[0], "$model");
+        __processArg(arguments[0], "__itemTemplate");
     }
     var $ = this;
     var exports = {};
