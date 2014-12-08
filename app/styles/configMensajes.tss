@@ -7,7 +7,7 @@
 },
 
 "TableView":{
-	top: "20%",
+	top: "80",
 	height: "80%"
 },
 
@@ -24,16 +24,18 @@
 	borderRadius: "5",
 	borderWidth: "2",
 	width: "78%",
-	top: "5%",
-	left: "5%"
+	top: "20",
+	left: "5%",
+	height: "20"	
 },
 
 "#lupa":{
-	top: "5%",
+	top: "20",
 	right: "3%",
 	width: "12%",
 	height: "10%",
-	backgroundImage: "/magnifying-glass-icon.png"
+	backgroundImage: "/magnifying-glass-icon.png",
+	height: "20"
 },
 
 "#row":{

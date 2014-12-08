@@ -1,10 +1,10 @@
 <Alloy>
 	<Tab title="Mensajes">
-		<Window id="index" windowSoftInputMode= "Ti.UI.Android.SOFT_INPUT_ADJUST_PAN">
+		<Window id="index" >
 			
-			<TextField id="buscar" hintText="Buscar"></TextField>
-			<Button id="lupa"></Button>
-			<TableView id="tabla" windowSoftInputMode= "Ti.UI.Android.SOFT_INPUT_ADJUST_PAN">
+			<TextField id="buscar" hintText="Buscar" height="40"></TextField>
+			<Button id="lupa" height="40"></Button>
+			<TableView id="tabla" >
 			</TableView>
 			
 		</Window>	

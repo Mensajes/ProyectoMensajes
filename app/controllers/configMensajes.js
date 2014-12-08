@@ -1,6 +1,5 @@
-$.buscar.addEventListener('change',function (e){
-	 
-});
+var data = [];
+
 function getAccordionItemRow(id,titulo, text){
 	var tvr = Titanium.UI.createTableViewRow({
 		height: "45"
@@ -87,7 +86,6 @@ function getAccordionItemRow(id,titulo, text){
     		tvr.height = 125;
     		dataLabel.objVisible = true;
         	dataLabel.height = Ti.UI.SIZE;
-        	//viewTexto.height = 140;
         	viewTexto.height = 80;
         	viewTexto.top = 45;
         	boton.backgroundImage = "/memorycard-icon.png";
@@ -120,9 +118,10 @@ function getStaticAccordionItemRow(e){
 		height: "0"
 	});
 	var label = Titanium.UI.createTextField({
-		value:'Nuevo Titulo',
 		left:'5%',
-		color: '#000'
+		color: '#000',
+		hintText:'Nuevo Titulo',
+		width: '70%'
 	});
 	var dataLabel = Titanium.UI.createTextArea({
 		top: '0',
@@ -133,7 +132,8 @@ function getStaticAccordionItemRow(e){
 	    width: '100%',
 	    font: {fontSize:15},
 	    returnKeyType: Ti.UI.RETURNKEY_GO,
-	    textAlign: 'left'
+	    textAlign: 'left',
+	    hintText:'Nuevo Mensaje'
 	});
 	var boton = Titanium.UI.createButton({
 		backgroundImage: "/compose-icon.png",
@@ -151,13 +151,16 @@ function getStaticAccordionItemRow(e){
         	tvr.height = 45;
         	dataLabel.objVisible = false;
         	boton.backgroundImage = "/compose-icon.png";	
-        	if (dataLabel.value != ""){
+        	if (dataLabel.value != "" && label.value != ""){
 	        	var mensaje = Alloy.createModel('mensaje',{titulo: label.value, mensaje: dataLabel.value});
 	        	mensaje.save();        		        	
-	        	addAccordionItem(mensaje.get('id'),label.value, dataLabel.value);
-	        	label.value = 'Nuevo Titulo';
-	        	dataLabel.value = '';
+	        	var row = getAccordionItemRow(mensaje.get('id'),label.value, dataLabel.value);
+	        	label.blur();
+	        	data.push(row);
+	        	$.tabla.setData(data);
         	}	
+        	label.value = '';
+	        dataLabel.value = '';
     	}
     	else
     	{
@@ -173,12 +176,9 @@ function getStaticAccordionItemRow(e){
 	viewTexto.add(dataLabel);
 	tvr.add(view);
 	tvr.add(viewTexto);
-	//$.tabla.insertRowBefore(0,tvrTexto);
-	//$.tabla.insertRowBefore(0,tvr);
 	return tvr;
 }
 
-var data = [];
 function initList(){
 	var mensajes = Alloy.createCollection('mensaje'); 
 	mensajes.fetch(); // Grab data from persistent storage
@@ -190,7 +190,6 @@ function initList(){
 	);
 	$.tabla.setData(data);
 }
-//addStaticAccordionItem();
 initList();
 
 $.configMensajes.open();

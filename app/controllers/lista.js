@@ -5,21 +5,6 @@ var multiValue = ['email', 'phone'];
 
 var people = Ti.Contacts.getAllPeople();
 
-var activityIndicator = Ti.UI.createActivityIndicator({
-  color: '#079fbb',
-  font: {fontFamily:'Helvetica Neue', fontSize:20, fontWeight:'bold'},
-  message: 'Loading...',
-  style: Ti.UI.ActivityIndicatorStyle.BIG_DARK,
-  height:Ti.UI.SIZE,
-  width:Ti.UI.SIZE
-});
-
-var indicatorRow = Ti.UI.createTableViewRow();
-indicatorRow.add(activityIndicator);
-$.contactList.appendRow(indicatorRow);
-
-activityIndicator.show();
-
 for (var i=0, ilen=people.length; i<ilen; i++){
 	var person = people[i];
 	
@@ -79,7 +64,7 @@ for (var i=0, ilen=people.length; i<ilen; i++){
 	}
 };
 
-activityIndicator.hide();
+//activityIndicator.hide();
 
 function createCheckbox (specs) {
     if(typeof specs != "object")
