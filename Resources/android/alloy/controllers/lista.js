@@ -74,13 +74,13 @@ function Controller() {
     $.__views.ventana.add($.__views.contactList);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    var data = [];
     var singleValue = [ "id", "fullName" ];
     var multiValue = [ "email", "phone" ];
     var people = Ti.Contacts.getAllPeople();
     for (var i = 0, ilen = people.length; ilen > i; i++) {
         var person = people[i];
         if ("{}" != JSON.stringify(person[multiValue[1]]) && "{}" != JSON.stringify(person[multiValue[0]])) {
-            Ti.API.info("phone:" + JSON.stringify(person[multiValue[1]]));
             var newContact = Ti.UI.createTableViewRow();
             var vista = Ti.UI.createView({
                 borderColor: "#afafaf",
@@ -95,10 +95,32 @@ function Controller() {
             var checkbox = createCheckbox({});
             vista.add(nombreContacto);
             vista.add(checkbox);
+            newContact.checkbox = checkbox;
+            newContact.nombre = person[singleValue[1]];
+            newContact.email = person[multiValue[0]];
             newContact.add(vista);
-            $.contactList.appendRow(newContact);
+            data.push(newContact);
         }
     }
+    $.guardar.addEventListener("click", function() {
+        if ("" != $.nombre.value) {
+            var lista = Alloy.createModel("lista", {
+                titulo: $.nombre.value
+            });
+            lista.save();
+            var id = lista.get("id");
+            for (var i in data) if (data[i].checkbox.checked) {
+                var lista_contacto = Alloy.createModel("lista_contacto", {
+                    id: id,
+                    nombre: data[i].nombre,
+                    email: data[i].email
+                });
+                lista_contacto.save();
+            }
+        }
+        $.ventana.close();
+    });
+    $.contactList.setData(data);
     $.ventana.open();
     _.extend($, exports);
 }

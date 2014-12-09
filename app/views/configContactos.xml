@@ -4,16 +4,7 @@
            	<TextField id="buscar" hintText="Buscar"></TextField>
 	       	<Button id="lupa"></Button>
         	
-        	<!--<Button id="agregar">Contactos</Button>
-        	<Button id="contactoIcon" backgroundImage="/blue-address-book-icon.png" onClick="openwin"></Button>-->
-        	
-            <TableView id="tabla">
-            	<TableViewRow>
-            		<View id="row">
-            			<Label id="newLista">Nueva Lista</Label>
-            			<Button id="rowButton" onClick="openwin"></Button>
-            		</View>
-	            </TableViewRow>
+        	<TableView id="tabla">
         	</TableView>
         </Window>
     </Tab>

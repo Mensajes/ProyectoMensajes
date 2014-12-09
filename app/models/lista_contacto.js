@@ -1,14 +1,15 @@
 exports.definition = {
 	config: {
 		columns : {
+			"idLista": "INTEGER PRIMARY KEY AUTOINCREMENT",
             "id": "TEXT",
             "nombre" : "TEXT",
-            "email" : "TEXT"
+            "email" : "TEXT"           
         },
 		adapter: {
 			type: "sql",
-			collection_name: "contacto",
-			idAttribute: "id"
+			collection_name: "lista_contacto",
+			idAttribute: "idLista"
 		}
 	},
 	extendModel: function(Model) {

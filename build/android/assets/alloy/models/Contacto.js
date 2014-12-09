@@ -2,9 +2,15 @@ var Alloy = require("alloy"), _ = require("alloy/underscore")._, model, collecti
 
 exports.definition = {
     config: {
+        columns: {
+            id: "TEXT",
+            nombre: "TEXT",
+            email: "TEXT"
+        },
         adapter: {
             type: "sql",
-            collection_name: "contacto"
+            collection_name: "contacto",
+            idAttribute: "id"
         }
     },
     extendModel: function(Model) {

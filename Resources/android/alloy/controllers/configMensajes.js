@@ -10,7 +10,8 @@ function __processArg(obj, key) {
 function Controller() {
     function getAccordionItemRow(id, titulo, text) {
         var tvr = Titanium.UI.createTableViewRow({
-            height: "45"
+            height: "45",
+            filter: id + " " + titulo + " " + text
         });
         var view = Titanium.UI.createView({
             top: "0",
@@ -63,15 +64,28 @@ function Controller() {
             backgroundImage: "/denied-icon.png"
         });
         elimina.addEventListener("click", function() {
-            var mensajes = Alloy.createCollection("mensaje");
-            mensajes.fetch();
-            var mensaje = mensajes.get(id);
-            var options = {
-                success: function() {
-                    $.tabla.deleteRow(tvr, {});
+            var eliminaDialog = Ti.UI.createOptionDialog({
+                buttonNames: [ "Aceptar", "Cancelar" ],
+                title: "¿Está seguro que desea eliminar este mensaje?",
+                androidView: viewDialog,
+                cancel: 2,
+                selectedIndex: 2,
+                destructive: 0
+            });
+            eliminaDialog.show();
+            eliminaDialog.addEventListener("click", function(e) {
+                if (0 == e.index) {
+                    var mensajes = Alloy.createCollection("mensaje");
+                    mensajes.fetch();
+                    var mensaje = mensajes.get(id);
+                    var options = {
+                        success: function() {
+                            $.tabla.deleteRow(tvr, {});
+                        }
+                    };
+                    mensaje.destroy(options);
                 }
-            };
-            mensaje.destroy(options);
+            });
         });
         boton.addEventListener("click", function() {
             if (true == dataLabel.objVisible) {
@@ -103,7 +117,9 @@ function Controller() {
         return tvr;
     }
     function getStaticAccordionItemRow() {
-        var tvr = Titanium.UI.createTableViewRow({});
+        var tvr = Titanium.UI.createTableViewRow({
+            filter: ""
+        });
         var view = Titanium.UI.createView({
             top: "0",
             borderColor: "#afafaf",
@@ -241,6 +257,15 @@ function Controller() {
     _.extend($, $.__views);
     var data = [];
     initList();
+    $.buscar.addEventListener("change", function() {
+        var filteredData = [];
+        filteredData.push(getStaticAccordionItemRow());
+        var value = $.buscar.value;
+        if ("" != value) {
+            for (var row in data) data[row].filter.match(value) && filteredData.push(data[row]);
+            $.tabla.setData(filteredData);
+        } else $.tabla.setData(data);
+    });
     $.configMensajes.open();
     _.extend($, exports);
 }

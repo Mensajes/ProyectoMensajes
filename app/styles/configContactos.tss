@@ -41,13 +41,6 @@
 	backgroundImage: "/magnifying-glass-icon.png"
 },
 
-"#contactoIcon":{
-	top: "18%",
-	left: "5%",
-	width: "12%",
-	height: "10%"
-},
-
 "#row":{
 	borderColor: "#afafaf",
 	borderRadius: "5",

@@ -11,6 +11,121 @@ function Controller() {
     function openwin() {
         var w = Alloy.createController("lista").getView();
         w.open();
+        w.addEventListener("close", function() {
+            initList();
+        });
+    }
+    function getAccordionItemRow(id, titulo) {
+        var tvr = Titanium.UI.createTableViewRow({
+            height: "45",
+            filter: titulo
+        });
+        var view = Titanium.UI.createView({
+            top: "0",
+            borderColor: "#afafaf",
+            borderRadius: "5",
+            height: "45"
+        });
+        var label = Titanium.UI.createLabel({
+            text: titulo,
+            left: "5%",
+            color: "#000"
+        });
+        var boton = Titanium.UI.createButton({
+            right: "14%",
+            borderRadius: 5,
+            backgroundImage: "/pencil-icon.png",
+            height: "35",
+            top: "5",
+            width: "11%"
+        });
+        var elimina = Titanium.UI.createButton({
+            right: "3%",
+            borderRadius: 5,
+            height: "35",
+            top: "5",
+            width: "11%",
+            backgroundImage: "/denied-icon.png"
+        });
+        elimina.addEventListener("click", function() {
+            var eliminaDialog = Ti.UI.createOptionDialog({
+                buttonNames: [ "Aceptar", "Cancelar" ],
+                title: "¿Está seguro que desea eliminar esta lista?",
+                cancel: 2,
+                selectedIndex: 2,
+                destructive: 0
+            });
+            eliminaDialog.show();
+            eliminaDialog.addEventListener("click", function(e) {
+                if (0 == e.index) {
+                    var lista_contactos = Alloy.createCollection("lista_contacto");
+                    lista_contactos.fetch();
+                    lista_contactos.each(function(lista_contacto) {
+                        lista_contacto.get("id") == id && lista_contacto.destroy();
+                    });
+                    var listas = Alloy.createCollection("lista");
+                    listas.fetch();
+                    var lista = listas.get(id);
+                    var options = {
+                        success: function() {
+                            $.tabla.deleteRow(tvr, {});
+                        }
+                    };
+                    lista.destroy(options);
+                }
+            });
+        });
+        boton.addEventListener("click", function() {
+            openwin();
+        });
+        view.add(label);
+        view.add(boton);
+        view.add(elimina);
+        tvr.add(view);
+        return tvr;
+    }
+    function getStaticAccordionItemRow() {
+        var tvr = Titanium.UI.createTableViewRow({
+            filter: ""
+        });
+        var view = Titanium.UI.createView({
+            top: "0",
+            borderColor: "#afafaf",
+            borderRadius: "5",
+            height: "45"
+        });
+        var label = Titanium.UI.createLabel({
+            left: "5%",
+            color: "#000",
+            text: "Nueva Lista",
+            width: "70%"
+        });
+        var boton = Titanium.UI.createButton({
+            backgroundImage: "/contacts-icon.png",
+            right: "3%",
+            borderRadius: 5,
+            height: "30",
+            top: "5",
+            width: "10%"
+        });
+        boton.addEventListener("click", function() {
+            openwin();
+        });
+        view.add(label);
+        view.add(boton);
+        tvr.add(view);
+        return tvr;
+    }
+    function initList() {
+        data = [];
+        $.tabla.setData(data);
+        var listas = Alloy.createCollection("lista");
+        listas.fetch();
+        data.push(getStaticAccordionItemRow());
+        listas.each(function(lista) {
+            data.push(getAccordionItemRow(lista.get("id"), lista.get("titulo")));
+        });
+        $.tabla.setData(data);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "configContactos";
@@ -21,7 +136,6 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    var __defers = {};
     $.__views.index = Ti.UI.createWindow({
         backgroundColor: "#f3fafc",
         id: "index",
@@ -48,40 +162,9 @@ function Controller() {
         id: "lupa"
     });
     $.__views.index.add($.__views.lupa);
-    var __alloyId0 = [];
-    $.__views.__alloyId1 = Ti.UI.createTableViewRow({
-        id: "__alloyId1"
-    });
-    __alloyId0.push($.__views.__alloyId1);
-    $.__views.row = Ti.UI.createView({
-        borderColor: "#afafaf",
-        borderRadius: "5",
-        height: "40",
-        id: "row"
-    });
-    $.__views.__alloyId1.add($.__views.row);
-    $.__views.newLista = Ti.UI.createLabel({
-        color: "#000",
-        left: "5%",
-        text: "Nueva Lista",
-        id: "newLista"
-    });
-    $.__views.row.add($.__views.newLista);
-    $.__views.rowButton = Ti.UI.createButton({
-        right: "3%",
-        borderRadius: 5,
-        height: "30",
-        top: "5",
-        width: "10%",
-        backgroundImage: "/contacts-icon.png",
-        id: "rowButton"
-    });
-    $.__views.row.add($.__views.rowButton);
-    openwin ? $.__views.rowButton.addEventListener("click", openwin) : __defers["$.__views.rowButton!click!openwin"] = true;
     $.__views.tabla = Ti.UI.createTableView({
         top: "20%",
         height: "80%",
-        data: __alloyId0,
         id: "tabla"
     });
     $.__views.index.add($.__views.tabla);
@@ -93,8 +176,18 @@ function Controller() {
     $.__views.configContactos && $.addTopLevelView($.__views.configContactos);
     exports.destroy = function() {};
     _.extend($, $.__views);
+    var data = [];
+    initList();
+    $.buscar.addEventListener("change", function() {
+        var filteredData = [];
+        filteredData.push(getStaticAccordionItemRow());
+        var value = $.buscar.value;
+        if ("" != value) {
+            for (var row in data) data[row].filter.match(value) && filteredData.push(data[row]);
+            $.tabla.setData(filteredData);
+        } else $.tabla.setData(data);
+    });
     $.configContactos.open();
-    __defers["$.__views.rowButton!click!openwin"] && $.__views.rowButton.addEventListener("click", openwin);
     _.extend($, exports);
 }
 

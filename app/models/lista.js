@@ -1,13 +1,12 @@
 exports.definition = {
 	config: {
 		columns : {
-            "id": "TEXT",
-            "nombre" : "TEXT",
-            "email" : "TEXT"
+            "id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+            "titulo" : "TEXT"
         },
 		adapter: {
 			type: "sql",
-			collection_name: "contacto",
+			collection_name: "lista",
 			idAttribute: "id"
 		}
 	},

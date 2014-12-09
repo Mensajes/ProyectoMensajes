@@ -17,27 +17,27 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    var __alloyId3 = [];
-    $.__views.__alloyId4 = Alloy.createController("principal", {
+    var __alloyId1 = [];
+    $.__views.__alloyId2 = Alloy.createController("principal", {
+        id: "__alloyId2"
+    });
+    __alloyId1.push($.__views.__alloyId2.getViewEx({
+        recurse: true
+    }));
+    $.__views.__alloyId4 = Alloy.createController("configMensajes", {
         id: "__alloyId4"
     });
-    __alloyId3.push($.__views.__alloyId4.getViewEx({
+    __alloyId1.push($.__views.__alloyId4.getViewEx({
         recurse: true
     }));
-    $.__views.__alloyId6 = Alloy.createController("configMensajes", {
+    $.__views.__alloyId6 = Alloy.createController("configContactos", {
         id: "__alloyId6"
     });
-    __alloyId3.push($.__views.__alloyId6.getViewEx({
-        recurse: true
-    }));
-    $.__views.__alloyId8 = Alloy.createController("configContactos", {
-        id: "__alloyId8"
-    });
-    __alloyId3.push($.__views.__alloyId8.getViewEx({
+    __alloyId1.push($.__views.__alloyId6.getViewEx({
         recurse: true
     }));
     $.__views.index = Ti.UI.createTabGroup({
-        tabs: __alloyId3,
+        tabs: __alloyId1,
         backgroundColor: "white",
         id: "index"
     });

@@ -3,14 +3,15 @@ var Alloy = require("alloy"), _ = require("alloy/underscore")._, model, collecti
 exports.definition = {
     config: {
         columns: {
+            idLista: "INTEGER PRIMARY KEY AUTOINCREMENT",
             id: "TEXT",
             nombre: "TEXT",
             email: "TEXT"
         },
         adapter: {
             type: "sql",
-            collection_name: "contacto",
-            idAttribute: "id"
+            collection_name: "lista_contacto",
+            idAttribute: "idLista"
         }
     },
     extendModel: function(Model) {
@@ -23,9 +24,9 @@ exports.definition = {
     }
 };
 
-model = Alloy.M("contacto", exports.definition, []);
+model = Alloy.M("lista_contacto", exports.definition, []);
 
-collection = Alloy.C("contacto", exports.definition, model);
+collection = Alloy.C("lista_contacto", exports.definition, model);
 
 exports.Model = model;
 
