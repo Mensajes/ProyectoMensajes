@@ -147,23 +147,24 @@ function Controller() {
         borderRadius: "5",
         borderWidth: "2",
         width: "78%",
-        top: "5%",
+        top: "20",
         left: "5%",
+        height: "40",
         id: "buscar",
         hintText: "Buscar"
     });
     $.__views.index.add($.__views.buscar);
     $.__views.lupa = Ti.UI.createButton({
-        top: "5%",
+        top: "20",
         right: "3%",
         width: "12%",
-        height: "10%",
+        height: "40",
         backgroundImage: "/magnifying-glass-icon.png",
         id: "lupa"
     });
     $.__views.index.add($.__views.lupa);
     $.__views.tabla = Ti.UI.createTableView({
-        top: "20%",
+        top: "80",
         height: "80%",
         id: "tabla"
     });

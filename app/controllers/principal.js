@@ -86,7 +86,6 @@ function mostrarReloj(e){
 });*/
 
 function dialogoLugar(e){	
-	
 	var aview = Ti.UI.createView({
 		height: "400"
 	});
@@ -160,23 +159,29 @@ function dialogoLugar(e){
 	lugaresDialog.show();
 };
 
-var mensajeDialog = Ti.UI.createOptionDialog({
+function selectMensaje(e){
+	var viewMensajes = Ti.UI.createView({
+		height: "50"
+	});
+	
+	var tablaMensajes = Ti.UI.createTableView({
+		top: "15%",
+		height: "50"	
+	});
+	
+	var mensajeDialog = Ti.UI.createOptionDialog({
 		title:"Mensajes Predet.", 
 		cancel: 2,
 		selectedIndex: 2,
+		androidView: viewMensajes,
 	  	destructive: 0,
-	  	options: ['1° Mensaje', '2° Mensaje', '3° Mensaje'],
+	  	//options: ['1° Mensaje', '2° Mensaje', '3° Mensaje'],
 	  	buttonNames: ['Aceptar', 'Cancelar'],
-});
-
-function selectMensaje(e){
+	});
+	
+	viewMensajes.add(tablaMensajes);
 	mensajeDialog.show();
 };
-
-mensajeDialog.addEventListener('click',function(e){
-    //alert('You Clicked' + e.source.options[e.index]);
-    $.mensaje.value = e.source.options[e.index];
-});
 
 var contactosDialog = Ti.UI.createOptionDialog({
 		title:"Listas Contactos", 

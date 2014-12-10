@@ -98,6 +98,22 @@ function Controller() {
         lugaresDialog.show();
     }
     function selectMensaje() {
+        var viewMensajes = Ti.UI.createView({
+            height: "50"
+        });
+        var tablaMensajes = Ti.UI.createTableView({
+            top: "15%",
+            height: "50"
+        });
+        var mensajeDialog = Ti.UI.createOptionDialog({
+            title: "Mensajes Predet.",
+            cancel: 2,
+            selectedIndex: 2,
+            androidView: viewMensajes,
+            destructive: 0,
+            buttonNames: [ "Aceptar", "Cancelar" ]
+        });
+        viewMensajes.add(tablaMensajes);
         mensajeDialog.show();
     }
     function selectLista() {
@@ -268,17 +284,6 @@ function Controller() {
     _.extend($, $.__views);
     $.principal.open();
     var picker = Ti.UI.createPicker({});
-    var mensajeDialog = Ti.UI.createOptionDialog({
-        title: "Mensajes Predet.",
-        cancel: 2,
-        selectedIndex: 2,
-        destructive: 0,
-        options: [ "1° Mensaje", "2° Mensaje", "3° Mensaje" ],
-        buttonNames: [ "Aceptar", "Cancelar" ]
-    });
-    mensajeDialog.addEventListener("click", function(e) {
-        $.mensaje.value = e.source.options[e.index];
-    });
     var contactosDialog = Ti.UI.createOptionDialog({
         title: "Listas Contactos",
         cancel: 2,

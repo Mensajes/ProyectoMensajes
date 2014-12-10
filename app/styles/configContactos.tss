@@ -6,21 +6,16 @@
 	borderColor: "#afafaf"
 },
 
+"TableView":{
+	top: "80",
+	height: "80%"
+},
+
 "#agregar": {
 	top: "18%",
 	borderRadius: "5",
 	backgroundColor: "#0071bc",
 	width: "30%"	
-},
-
-"TableView":{
-	top: "20%",
-	height: "80%"
-},
-
-"Label":{
-	color: "#000",
-	left: "3%"
 },
 
 "#buscar":{
@@ -29,23 +24,25 @@
 	borderRadius: "5",
 	borderWidth: "2",
 	width: "78%",
-	top: "5%",
-	left: "5%"
+	top: "20",
+	left: "5%",
+	height: "40"	
 },
 
 "#lupa":{
-	top: "5%",
+	top: "20",
 	right: "3%",
 	width: "12%",
 	height: "10%",
-	backgroundImage: "/magnifying-glass-icon.png"
+	backgroundImage: "/magnifying-glass-icon.png",
+	height: "40"
 },
 
 "#row":{
 	borderColor: "#afafaf",
 	borderRadius: "5",
 	height: "40",
-	//backgroundColor:'#e7e9e7'
+	backgroundColor:'#e7e9e7',
 },
 
 "#newLista":{
@@ -56,10 +53,8 @@
 "#rowButton":{
 	right: '3%',
 	borderRadius: 5,
-	//backgroundColor: "#0089e3",
+	backgroundColor: "#0089e3",
 	height: "30",
 	top: "5",
-	width: "10%",
-	backgroundImage: '/contacts-icon.png'
-			
+	width: "30%"		
 }

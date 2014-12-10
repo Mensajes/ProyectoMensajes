@@ -2,8 +2,8 @@
 	<Tab title="Mensajes">
 		<Window id="index" >
 			
-			<TextField id="buscar" hintText="Buscar" height="40"></TextField>
-			<Button id="lupa" height="40"></Button>
+			<TextField id="buscar" hintText="Buscar"></TextField>
+			<Button id="lupa"></Button>
 			<TableView id="tabla" >
 			</TableView>
 			
