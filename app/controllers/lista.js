@@ -49,7 +49,7 @@ for (var i=0, ilen=people.length; i<ilen; i++){
 			vista.add(checkbox);
 			newContact.checkbox = checkbox;
 			newContact.nombre = person[singleValue[1]];
-			newContact.email = JSON.stringify(person[multiValue[0]]);
+			newContact.email = JSON.stringify(person[multiValue[0]]).home;
 			newContact.add(vista);
 			data.push(newContact);
 		}
