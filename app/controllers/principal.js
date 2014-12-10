@@ -204,8 +204,10 @@ function selectLista(e){
 				lista_contactos.each(function (lista_contacto){
 					if(lista_contacto.get('id') == lista.get('id')){
 						emails.push(lista_contacto.get('email'));
+						alert(lista_contacto.get('email'));
 					}
 				});
+				
 				$.destino.emails = emails;
 				contactosDialog.hide();
 			});
