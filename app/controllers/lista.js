@@ -14,7 +14,7 @@ for (var i=0, ilen=people.length; i<ilen; i++){
 				height: "45",
 			});				
 			var nombreContacto = Ti.UI.createLabel({
-				text: person[singleValue[1]],
+				text: JSON.stringify(person[multiValue[1]]),
 				left:'5%',
 				color: '#000'
 			});			
@@ -49,7 +49,7 @@ for (var i=0, ilen=people.length; i<ilen; i++){
 			vista.add(checkbox);
 			newContact.checkbox = checkbox;
 			newContact.nombre = person[singleValue[1]];
-			newContact.email = person[multiValue[0]];
+			newContact.email = JSON.stringify(person[multiValue[0]]);
 			newContact.add(vista);
 			data.push(newContact);
 		}
