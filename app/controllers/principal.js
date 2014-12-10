@@ -132,7 +132,6 @@ function selectMensaje(e){
 		selectedIndex: 2,
 		androidView: viewMensajes,
 	  	destructive: 0,
-	  	//options: ['1° Mensaje', '2° Mensaje', '3° Mensaje'],
 	  	buttonNames: ['Aceptar', 'Cancelar'],
 	});
 	data = [];

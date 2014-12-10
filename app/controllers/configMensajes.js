@@ -59,7 +59,7 @@ function getAccordionItemRow(id,titulo, text){
 		var eliminaDialog = Ti.UI.createOptionDialog({
 			buttonNames: ['Aceptar', 'Cancelar'],
 			title:"¿Está seguro que desea eliminar este mensaje?",
-			androidView: viewDialog,
+			//androidView: viewDialog,
 			cancel: 2,
 			selectedIndex: 2,
 	  		destructive: 0,
@@ -75,6 +75,7 @@ function getAccordionItemRow(id,titulo, text){
 		            success: function(model, response) {		                
 					    //luego que se elimino el modelo se muestra el cambio en el tableview
 					    $.tabla.deleteRow(tvr,{});
+					    data.splice(data.indexOf(tvr),1);
 		            },
 		        };		
 				mensaje.destroy(options);
