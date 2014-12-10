@@ -77,12 +77,16 @@ function Controller() {
                         });
                         var row = Ti.UI.createTableViewRow({});
                         var label = Ti.UI.createLabel({
-                            text: JSON.stringify(json.results[i].formatted_address),
+                            text: json.results[i].formatted_address.toString(),
                             left: "5%",
-                            color: "#fff"
+                            color: "#fff",
+                            lat: json.results[i].geometry.location.lat.toString(),
+                            lon: json.results[i].geometry.location.lng.toString()
                         });
                         row.addEventListener("click", function() {
                             $.lugar.value = label.text;
+                            $.lugar.lat = label.lat;
+                            $.lugar.lon = label.lon;
                             lugaresDialog.hide();
                         });
                         view.add(label);
@@ -98,17 +102,17 @@ function Controller() {
         lugaresDialog.show();
     }
     function selectMensaje() {
-        var viewMensajes = Ti.UI.createView({
-            height: "50%"
+        var aview = Ti.UI.createView({
+            height: "400"
         });
         var tablaMensajes = Ti.UI.createTableView({
-            height: "50%"
+            height: "400"
         });
         var mensajeDialog = Ti.UI.createOptionDialog({
             title: "Mensajes Predet.",
+            androidView: aview,
             cancel: 2,
             selectedIndex: 2,
-            androidView: viewMensajes,
             destructive: 0,
             buttonNames: [ "Aceptar", "Cancelar" ]
         });
@@ -116,25 +120,29 @@ function Controller() {
         var mensajes = Alloy.createCollection("mensaje");
         mensajes.fetch();
         mensajes.each(function(mensaje) {
+            var view = Ti.UI.createView({
+                height: "40"
+            });
             var row = Ti.UI.createTableViewRow({
                 height: "40"
             });
             var label = Ti.UI.createLabel({
                 value: mensaje.get("titulo"),
+                left: "5%",
                 color: "#fff",
                 height: "30"
             });
-            row.add(label);
             row.addEventListener("click", function() {
                 $.mensaje.value = mensaje.get("titulo");
-                $.mensaje.mensaje_id = mensaje.get("id");
                 $.mensaje.mensaje_text = mensaje.get("mensaje");
                 mensajeDialog.hide();
             });
+            view.add(label);
+            row.add(view);
             data.push(row);
         });
+        aview.add(tablaMensajes);
         tablaMensajes.setData(data);
-        viewMensajes.add(tablaMensajes);
         mensajeDialog.show();
     }
     function selectLista() {
@@ -153,23 +161,32 @@ function Controller() {
             buttonNames: [ "Aceptar", "Cancelar" ]
         });
         data = [];
-        var mensajes = Alloy.createCollection("mensaje");
-        mensajes.fetch();
-        mensajes.each(function(mensaje) {
+        var listas = Alloy.createCollection("lista");
+        listas.fetch();
+        var lista_contactos = Alloy.createCollection("lista_contacto");
+        lista_contactos.fetch();
+        listas.each(function(lista) {
             var row = Ti.UI.createTableViewRow({
                 height: "40"
             });
+            var view = Ti.UI.createView({
+                height: "40"
+            });
             var label = Ti.UI.createLabel({
-                value: mensaje.get("titulo"),
+                value: lista.get("titulo"),
                 color: "#fff",
                 height: "30"
             });
-            row.add(label);
+            view.add(label);
+            row.add(view);
             row.addEventListener("click", function() {
-                $.mensaje.value = mensaje.get("titulo");
-                $.mensaje.mensaje_id = mensaje.get("id");
-                $.mensaje.mensaje_text = mensaje.get("mensaje");
-                mensajeDialog.hide();
+                $.destino.value = lista.get("titulo");
+                var emails = [];
+                lista_contactos.each(function(lista_contacto) {
+                    lista_contacto.get("id") == lista.get("id") && emails.push(lista_contacto.get("email"));
+                });
+                $.destino.emails = emails;
+                contactosDialog.hide();
             });
             data.push(row);
         });
@@ -343,24 +360,108 @@ function Controller() {
     $.principal.open();
     var picker = Ti.UI.createPicker({});
     $.enviar.addEventListener("click", function() {
-        var sendgrid = require("tisendgrid")("kokeloker", "74d3f6a2");
-        var email_to_address = [ "vardilesduarte@gmail.com", "warelicious.182@hotmail.com" ];
-        var email_from_address = "jpobleteriquelme@gmail.com";
-        var email_subject = "Asunto Importante";
-        var email_message_text = $.mensaje.value + "\nEl día " + $.fecha.value + " a las " + $.hora.value + ".\n Te espero, Saludos." + $.destino.value + "\n" + $.lugar.value;
-        var email = {
-            to: email_to_address,
-            from: email_from_address,
-            subject: email_subject,
-            text: email_message_text
-        };
-        var message = sendgrid.Email(email);
-        sendgrid.send(message, function(e) {
-            if (e) {
-                console.log(JSON.stringify(e));
-                alert(e.errors[0]);
-            } else alert("¡Mensaje enviado exitosamente!");
+        var aview = Ti.UI.createView({
+            height: "400"
         });
+        var texto = Ti.UI.createTextField({
+            width: "80%",
+            top: "3%",
+            hintText: "Escriba un correo valido"
+        });
+        aview.add(texto);
+        var correoDialog = Ti.UI.createOptionDialog({
+            title: "Correo",
+            androidView: aview,
+            cancel: 2,
+            selectedIndex: 2,
+            destructive: 0,
+            buttonNames: [ "Aceptar", "Cancelar" ]
+        });
+        correoDialog.addEventListener("click", function(e) {
+            if (0 == e.index) if ("" != texto.value) {
+                var patt = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+                if (patt.test(texto.value)) {
+                    var config = Alloy.createModel("config", {
+                        email: texto.value
+                    });
+                    config.save();
+                } else {
+                    alert("Correo no valido!");
+                    texto.value = "";
+                }
+            } else alert("no se ingreso ningun correo!");
+            correoDialog.hide();
+        });
+        var configs = Alloy.createCollection("config");
+        configs.fetch();
+        var configurado = false;
+        var email = "";
+        configs.each(function(config) {
+            configurado = true;
+            email = config.get("email");
+        });
+        if ("" != $.mensaje.value) if ("" != $.destino.value) if (configurado) {
+            var sendgrid = require("tisendgrid")("kokeloker", "74d3f6a2");
+            var email_to_address = $.destino.emails;
+            var email_from_address = email;
+            var email_subject = $.mensaje.value;
+            var email_map_url = "https://www.google.cl/maps/@" + $.lugar.lat + "," + $.lugar.lon + ",15z";
+            "http://maps.googleapis.com/maps/api/staticmap?center=" + $.lugar.lat + "," + $.lugar.lon + "&zoom=15&size=300x300&sensor=false";
+            var email_message_text = $.mensaje.mensaje_text + "\n\n" + "El día " + $.fecha.value + " a las " + $.hora.value + ", en\n\n" + $.lugar.value + "\n\n" + email_map_url;
+            var email = {
+                to: email_to_address,
+                from: email_from_address,
+                subject: email_subject,
+                text: email_message_text
+            };
+            var message = sendgrid.Email(email);
+            var viewIndicator = Ti.UI.createView({
+                height: Ti.UI.SIZE
+            });
+            var activityIndicator = Ti.UI.createActivityIndicator({
+                color: "white",
+                font: {
+                    fontFamily: "Helvetica Neue",
+                    fontSize: 26,
+                    fontWeight: "bold"
+                },
+                message: "Enviando...",
+                style: Ti.UI.ActivityIndicatorStyle.BIG,
+                top: 10,
+                left: 10,
+                height: Ti.UI.SIZE,
+                width: Ti.UI.SIZE
+            });
+            viewIndicator.add(activityIndicator);
+            var enviandoDialog = Ti.UI.createOptionDialog({
+                title: "Enviando...",
+                androidView: viewIndicator,
+                destructive: 0,
+                height: Ti.UI.SIZE
+            });
+            viewIndicator.addEventListener("open", function() {
+                activityIndicator.show();
+            });
+            activityIndicator.show();
+            enviandoDialog.show();
+            sendgrid.send(message, function(e) {
+                enviandoDialog.hide();
+                if (e) {
+                    console.log(JSON.stringify(e));
+                    alert(e.errors[0]);
+                } else {
+                    alert("¡Mensaje enviado exitosamente!");
+                    $.fecha.value = "";
+                    $.hora.value = "";
+                    $.mensaje.value = "";
+                    $.destino = "";
+                    $.lugar = "";
+                }
+            });
+        } else {
+            alert("No ha sido configurado");
+            correoDialog.show();
+        } else alert("Seleccionar destinatarios"); else alert("Seleccionar mensaje a enviar");
     });
     __defers["$.__views.fecha!click!mostrarCalendario"] && $.__views.fecha.addEventListener("click", mostrarCalendario);
     __defers["$.__views.calendarIcon!click!mostrarCalendario"] && $.__views.calendarIcon.addEventListener("click", mostrarCalendario);

@@ -18,39 +18,19 @@ for (var i=0, ilen=people.length; i<ilen; i++){
 				left:'5%',
 				color: '#000'
 			});			
-			/*
-			var check = Ti.UI.createSwitch({
-				type: Titanium.UI.Android.SWITCH_STYLE_CHECKBOX,
-				width: "45",
-				height: "45",
-				right: "3%",
-				borderColor: "#afafaf",
-				borderRadius: "5",
-				//backgroundColor: "#fff",
-				//color: "#fff",
-				value: "false"
-			});
 			
-			/*
-			 check.addEventListener('change', function(e){
-				Ti.API.info(check.value);
-				if(check.value == true){
-					check.backgroundColor = "#fff";
-					check.color = "#fff";
-				} else{
-					check.backgroundColor = "#0071bc";
-					check.color = "#0071bc";
-				}	
-			});
-			
-			*/
 			var checkbox = createCheckbox({});
 			vista.add(nombreContacto);
 			vista.add(checkbox);
 			newContact.checkbox = checkbox;
 			newContact.nombre = person[singleValue[1]];
-			newContact.email = (person[multiValue[0]]).home;
-			alert((person[multiValue[0]]).home);
+			
+			var m = person[multiValue[0]].home;
+			if (m == null){
+				m = person[multiValue[0]].other;
+			}
+			newContact.email = m.toString();
+			Ti.API.info('edgar: '+newContact.email);
 			newContact.add(vista);
 			data.push(newContact);
 		}
@@ -83,7 +63,13 @@ function createCheckbox (specs) {
 }
 
 $.guardar.addEventListener('click',function(e){
-	if ($.nombre.value != ""){
+	var seleccion = false;
+	for (var i in data){
+		if (data[i].checkbox.checked){
+			seleccion = true;						
+		}
+	}
+	if ($.nombre.value != "" && seleccion){
 		var lista = Alloy.createModel('lista',{titulo: $.nombre.value});
 		lista.save();
 		var id = lista.get('id');

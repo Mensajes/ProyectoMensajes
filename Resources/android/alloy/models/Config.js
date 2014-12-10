@@ -8,7 +8,7 @@ exports.definition = {
         },
         adapter: {
             type: "sql",
-            collection_name: "default",
+            collection_name: "config",
             idAttribute: "id"
         }
     },
@@ -22,9 +22,9 @@ exports.definition = {
     }
 };
 
-model = Alloy.M("default", exports.definition, []);
+model = Alloy.M("config", exports.definition, []);
 
-collection = Alloy.C("default", exports.definition, model);
+collection = Alloy.C("config", exports.definition, model);
 
 exports.Model = model;
 

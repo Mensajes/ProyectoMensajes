@@ -97,13 +97,18 @@ function Controller() {
             vista.add(checkbox);
             newContact.checkbox = checkbox;
             newContact.nombre = person[singleValue[1]];
-            newContact.email = person[multiValue[0]];
+            var m = person[multiValue[0]].home;
+            null == m && (m = person[multiValue[0]].other);
+            newContact.email = m.toString();
+            Ti.API.info("edgar: " + newContact.email);
             newContact.add(vista);
             data.push(newContact);
         }
     }
     $.guardar.addEventListener("click", function() {
-        if ("" != $.nombre.value) {
+        var seleccion = false;
+        for (var i in data) data[i].checkbox.checked && (seleccion = true);
+        if ("" != $.nombre.value && seleccion) {
             var lista = Alloy.createModel("lista", {
                 titulo: $.nombre.value
             });

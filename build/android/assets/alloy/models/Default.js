@@ -2,9 +2,14 @@ var Alloy = require("alloy"), _ = require("alloy/underscore")._, model, collecti
 
 exports.definition = {
     config: {
+        columns: {
+            id: "INTEGER PRIMARY KEY AUTOINCREMENT",
+            email: "TEXT"
+        },
         adapter: {
             type: "sql",
-            collection_name: "default"
+            collection_name: "default",
+            idAttribute: "id"
         }
     },
     extendModel: function(Model) {

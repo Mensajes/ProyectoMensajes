@@ -1,9 +1,13 @@
 exports.definition = {
 	config: {
-
+		columns : {
+			"id": "INTEGER PRIMARY KEY AUTOINCREMENT",
+            "email" : "TEXT"           
+        },
 		adapter: {
 			type: "sql",
-			collection_name: "default"
+			collection_name: "config",
+			idAttribute: "id"
 		}
 	},
 	extendModel: function(Model) {
