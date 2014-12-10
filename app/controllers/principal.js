@@ -138,13 +138,13 @@ function selectMensaje(e){
 	data = [];
 	var mensajes = Alloy.createCollection('mensaje'); 
 	mensajes.fetch(); // Grab data from persistent storage
-	data.push(getStaticAccordionItemRow());
 	mensajes.each(
 		function (mensaje){
 			var row = Ti.UI.createTableViewRow({});
 			var label = Ti.UI.createLabel({
 				value: mensaje.get('titulo')
 			});
+			row.add(label);
 			row.addEventListener('click', function(e){
 				$.mensaje.value = mensaje.get('titulo');
 				$.mensaje.mensaje_id = mensaje.get('id');
