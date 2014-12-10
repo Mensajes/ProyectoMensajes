@@ -207,7 +207,7 @@ function selectLista(e){
 					}
 				});
 				$.destino.emails = emails;
-				mensajeDialog.hide();
+				contactosDialog.hide();
 			});
 			data.push(row);	
 		}
