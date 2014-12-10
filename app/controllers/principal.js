@@ -1,8 +1,7 @@
 $.principal.open();
 
 
-var picker = Ti.UI.createPicker({
-});
+var picker = Ti.UI.createPicker({});
 
 function mostrarCalendario(e) {
 	picker.showDatePickerDialog({
@@ -42,48 +41,6 @@ function mostrarReloj(e){
 		}
 	});	
 };
-
-
-
-
-/*$.hora.addEventListener('click', function(e){
-	var horaP = Ti.UI.createPicker({
-	type:Ti.UI.PICKER_TYPE_TIME
-	});
-
-	horaP.showTimePickerDialog({
-		value: new Date(),
-		callback : function(e) {
-			if (e.cancel) {
-				Ti.API.info('user canceled dialog');
-			} else {
-				Ti.API.info('value is: ' + e.value);
-				
-				Ti.API.info('lets see what this object is' + JSON.stringify(e));
-				selectedTime = e.value;
-				$.hora.value = String.formatTime(selectedTime, 'medium');
-			}
-		}
-	});	
-});*/
-
-/*$.fecha.addEventListener('click', function(e) {
-	picker.showDatePickerDialog({
-		value : new Date(), // some date
-		callback : function(e) {
-			if (e.cancel) {
-				Ti.API.info('user canceled dialog');
-			} else {
-				Ti.API.info('value is: ' + e.value);
-				
-				Ti.API.info('lets see what this object is' + JSON.stringify(e));
-				selectedDate = e.value;
-				$.fecha.value = String.formatDate(selectedDate, 'medium');
-			}
-		}
-	});
- 
-});*/
 
 function dialogoLugar(e){	
 	var aview = Ti.UI.createView({
@@ -178,7 +135,26 @@ function selectMensaje(e){
 	  	//options: ['1° Mensaje', '2° Mensaje', '3° Mensaje'],
 	  	buttonNames: ['Aceptar', 'Cancelar'],
 	});
-	
+	data = [];
+	var mensajes = Alloy.createCollection('mensaje'); 
+	mensajes.fetch(); // Grab data from persistent storage
+	data.push(getStaticAccordionItemRow());
+	mensajes.each(
+		function (mensaje){
+			var row = Ti.UI.createTableViewRow({});
+			var label = Ti.UI.createLabel({
+				value: mensaje.get('titulo')
+			});
+			row.addEventListener('click', function(e){
+				$.mensaje.value = mensaje.get('titulo');
+				$.mensaje.mensaje_id = mensaje.get('id');
+				$.mensaje.mensaje_text = mensaje.get('mensaje');
+				mensajeDialog.hide();
+			});
+			data.push(row);	
+		}
+	);
+	tablaMensajes.setData(data);
 	viewMensajes.add(tablaMensajes);
 	mensajeDialog.show();
 };
