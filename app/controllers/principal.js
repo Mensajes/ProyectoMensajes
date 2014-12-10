@@ -149,7 +149,6 @@ function selectMensaje(e){
 			row.add(label);
 			row.addEventListener('click', function(e){
 				$.mensaje.value = mensaje.get('titulo');
-				$.mensaje.mensaje_id = mensaje.get('id');
 				$.mensaje.mensaje_text = mensaje.get('mensaje');
 				mensajeDialog.hide();
 			});
@@ -180,23 +179,34 @@ function selectLista(e){
 	  	buttonNames: ['Aceptar', 'Cancelar'],
 	});
 	data = [];
-	var mensajes = Alloy.createCollection('mensaje'); 
-	mensajes.fetch(); // Grab data from persistent storage
-	mensajes.each(
-		function (mensaje){
+	var listas = Alloy.createCollection('lista'); 
+	listas.fetch(); // Grab data from persistent storage
+	var lista_contactos = Alloy.createCollection('lista_contacto');
+	lista_contactos.fetch();
+	listas.each(
+		function (lista){
 			var row = Ti.UI.createTableViewRow({
 				height: '40'
 			});
+			var view = Ti.UI.createView({
+				height: '40'
+			});
 			var label = Ti.UI.createLabel({
-				value: mensaje.get('titulo'),
+				value: lista.get('titulo'),
 				color: "#fff",
 				height: '30'
 			});
-			row.add(label);
+			view.add(label);
+			row.add(view);
 			row.addEventListener('click', function(e){
-				$.mensaje.value = mensaje.get('titulo');
-				$.mensaje.mensaje_id = mensaje.get('id');
-				$.mensaje.mensaje_text = mensaje.get('mensaje');
+				$.destino.value = lista.get('titulo');
+				var emails = [];
+				lista_contactos.each(function (lista_contacto){
+					if(lista_contacto.get('id') == lista.get('id')){
+						emails.push(lista_contacto.get('email'));
+					}
+				});
+				$.destino.emails = emails;
 				mensajeDialog.hide();
 			});
 			data.push(row);	
