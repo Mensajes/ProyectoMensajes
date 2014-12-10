@@ -14,7 +14,7 @@ for (var i=0, ilen=people.length; i<ilen; i++){
 				height: "45",
 			});				
 			var nombreContacto = Ti.UI.createLabel({
-				text: JSON.stringify(person[multiValue[1]]),
+				text: person[singleValue[1]],
 				left:'5%',
 				color: '#000'
 			});			
