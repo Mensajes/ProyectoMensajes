@@ -118,12 +118,11 @@ function dialogoLugar(e){
 
 function selectMensaje(e){
 	var viewMensajes = Ti.UI.createView({
-		height: "50"
+		height: "50%"
 	});
 	
 	var tablaMensajes = Ti.UI.createTableView({
-		top: "15%",
-		height: "50"	
+		height: "50%"	
 	});
 	
 	var mensajeDialog = Ti.UI.createOptionDialog({
@@ -139,9 +138,13 @@ function selectMensaje(e){
 	mensajes.fetch(); // Grab data from persistent storage
 	mensajes.each(
 		function (mensaje){
-			var row = Ti.UI.createTableViewRow({});
+			var row = Ti.UI.createTableViewRow({
+				height: '40'
+			});
 			var label = Ti.UI.createLabel({
-				value: mensaje.get('titulo')
+				value: mensaje.get('titulo'),
+				color: "#fff",
+				height: '30'
 			});
 			row.add(label);
 			row.addEventListener('click', function(e){
@@ -158,23 +161,51 @@ function selectMensaje(e){
 	mensajeDialog.show();
 };
 
-var contactosDialog = Ti.UI.createOptionDialog({
-		title:"Listas Contactos", 
-		cancel: 2,
-		selectedIndex: 2,
-	  	destructive: 0,
-	  	options: ['1° Lista', '2° Lista', '3° Lista'],
-	  	buttonNames: ['Aceptar', 'Cancelar'],
-});
 
 function selectLista(e){
+	var viewContactos = Ti.UI.createView({
+		height: "50%"
+	});
+	
+	var tablaContactos = Ti.UI.createTableView({
+		height: "50%"	
+	});
+	
+	var contactosDialog = Ti.UI.createOptionDialog({
+		title:"Mensajes Predet.", 
+		cancel: 2,
+		selectedIndex: 2,
+		androidView: viewContactos,
+	  	destructive: 0,
+	  	buttonNames: ['Aceptar', 'Cancelar'],
+	});
+	data = [];
+	var mensajes = Alloy.createCollection('mensaje'); 
+	mensajes.fetch(); // Grab data from persistent storage
+	mensajes.each(
+		function (mensaje){
+			var row = Ti.UI.createTableViewRow({
+				height: '40'
+			});
+			var label = Ti.UI.createLabel({
+				value: mensaje.get('titulo'),
+				color: "#fff",
+				height: '30'
+			});
+			row.add(label);
+			row.addEventListener('click', function(e){
+				$.mensaje.value = mensaje.get('titulo');
+				$.mensaje.mensaje_id = mensaje.get('id');
+				$.mensaje.mensaje_text = mensaje.get('mensaje');
+				mensajeDialog.hide();
+			});
+			data.push(row);	
+		}
+	);
+	tablaContactos.setData(data);
+	viewContactos.add(tablaContactos);
 	contactosDialog.show();
 };
-
-contactosDialog.addEventListener('click',function(e){
-//    alert('You Clicked' + e.source.options[e.index]);
-    $.destino.value = e.source.options[e.index];
-});
 
 
 

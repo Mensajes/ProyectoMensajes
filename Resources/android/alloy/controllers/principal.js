@@ -99,11 +99,10 @@ function Controller() {
     }
     function selectMensaje() {
         var viewMensajes = Ti.UI.createView({
-            height: "50"
+            height: "50%"
         });
         var tablaMensajes = Ti.UI.createTableView({
-            top: "15%",
-            height: "50"
+            height: "50%"
         });
         var mensajeDialog = Ti.UI.createOptionDialog({
             title: "Mensajes Predet.",
@@ -113,10 +112,69 @@ function Controller() {
             destructive: 0,
             buttonNames: [ "Aceptar", "Cancelar" ]
         });
+        data = [];
+        var mensajes = Alloy.createCollection("mensaje");
+        mensajes.fetch();
+        mensajes.each(function(mensaje) {
+            var row = Ti.UI.createTableViewRow({
+                height: "40"
+            });
+            var label = Ti.UI.createLabel({
+                value: mensaje.get("titulo"),
+                color: "#fff",
+                height: "30"
+            });
+            row.add(label);
+            row.addEventListener("click", function() {
+                $.mensaje.value = mensaje.get("titulo");
+                $.mensaje.mensaje_id = mensaje.get("id");
+                $.mensaje.mensaje_text = mensaje.get("mensaje");
+                mensajeDialog.hide();
+            });
+            data.push(row);
+        });
+        tablaMensajes.setData(data);
         viewMensajes.add(tablaMensajes);
         mensajeDialog.show();
     }
     function selectLista() {
+        var viewContactos = Ti.UI.createView({
+            height: "50%"
+        });
+        var tablaContactos = Ti.UI.createTableView({
+            height: "50%"
+        });
+        var contactosDialog = Ti.UI.createOptionDialog({
+            title: "Mensajes Predet.",
+            cancel: 2,
+            selectedIndex: 2,
+            androidView: viewContactos,
+            destructive: 0,
+            buttonNames: [ "Aceptar", "Cancelar" ]
+        });
+        data = [];
+        var mensajes = Alloy.createCollection("mensaje");
+        mensajes.fetch();
+        mensajes.each(function(mensaje) {
+            var row = Ti.UI.createTableViewRow({
+                height: "40"
+            });
+            var label = Ti.UI.createLabel({
+                value: mensaje.get("titulo"),
+                color: "#fff",
+                height: "30"
+            });
+            row.add(label);
+            row.addEventListener("click", function() {
+                $.mensaje.value = mensaje.get("titulo");
+                $.mensaje.mensaje_id = mensaje.get("id");
+                $.mensaje.mensaje_text = mensaje.get("mensaje");
+                mensajeDialog.hide();
+            });
+            data.push(row);
+        });
+        tablaContactos.setData(data);
+        viewContactos.add(tablaContactos);
         contactosDialog.show();
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
@@ -206,7 +264,7 @@ function Controller() {
         right: "10%",
         height: "10%",
         width: "12%",
-        backgroundImage: "/mail-icon.png",
+        backgroundImage: "/email-icon.png",
         id: "mensajeIcon"
     });
     $.__views.win.add($.__views.mensajeIcon);
@@ -284,17 +342,6 @@ function Controller() {
     _.extend($, $.__views);
     $.principal.open();
     var picker = Ti.UI.createPicker({});
-    var contactosDialog = Ti.UI.createOptionDialog({
-        title: "Listas Contactos",
-        cancel: 2,
-        selectedIndex: 2,
-        destructive: 0,
-        options: [ "1° Lista", "2° Lista", "3° Lista" ],
-        buttonNames: [ "Aceptar", "Cancelar" ]
-    });
-    contactosDialog.addEventListener("click", function(e) {
-        $.destino.value = e.source.options[e.index];
-    });
     $.enviar.addEventListener("click", function() {
         var sendgrid = require("tisendgrid")("kokeloker", "74d3f6a2");
         var email_to_address = [ "vardilesduarte@gmail.com", "warelicious.182@hotmail.com" ];

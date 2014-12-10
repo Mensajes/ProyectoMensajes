@@ -67,7 +67,6 @@ function Controller() {
             var eliminaDialog = Ti.UI.createOptionDialog({
                 buttonNames: [ "Aceptar", "Cancelar" ],
                 title: "¿Está seguro que desea eliminar este mensaje?",
-                androidView: viewDialog,
                 cancel: 2,
                 selectedIndex: 2,
                 destructive: 0
@@ -81,6 +80,7 @@ function Controller() {
                     var options = {
                         success: function() {
                             $.tabla.deleteRow(tvr, {});
+                            data.splice(data.indexOf(tvr), 1);
                         }
                     };
                     mensaje.destroy(options);

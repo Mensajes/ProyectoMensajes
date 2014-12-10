@@ -59,7 +59,7 @@
 	right: "10%",
 	height: "10%",
 	width: "12%",
-	backgroundImage: "/mail-icon.png"
+	backgroundImage: "/email-icon.png"
 },
 
 "#destino":{
